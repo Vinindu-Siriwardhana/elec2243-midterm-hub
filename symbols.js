@@ -120,13 +120,22 @@ L521: W :: work done by an external agent moving the charge (J) ; q :: charge mo
 L611: Q :: real charge above the plane ; -Q :: image charge, mirrored below the plane ; h :: height above the plane ; @lambda :: line charge running parallel to the plane ; x :: horizontal distance along the plane from directly below the line ; @sigma :: induced surface charge on the plane ; @eps0
 L612: @C ; @eps0 ; A :: plate area ; d :: plate separation ; t :: thickness of the metal slab ; Q :: charge on the plates (fixed if isolated) ; W :: stored energy
 L613: \vec E :: electric field ; r :: distance from the centre ; a :: radius of the charged object ; Q :: its total charge
+L614: @I :: current (A = C/s) ; Q :: charge that has crossed the area (C) ; t :: time (s) ; @J ; A :: cross-section area (m²) ; \hat I :: unit vector along the current ; @dS
+L615: \Delta Q :: charge crossing the area in time Δt (C) ; @rho ; v :: speed of the charges (m/s) ; \Delta t :: time interval ; \Delta S :: area element, perpendicular to the flow (m²) ; \Delta I :: current through ΔS ; @J ; \vec v :: velocity of the charges
+L616: \vec v_e :: drift velocity of the electrons (m/s) ; \mu_e :: electron mobility, m²/(V·s) ; @E ; @J ; @rho :: charge density of the moving charges (negative for electrons) ; \sigma :: conductivity, S/m
+L617: \Delta V :: voltage across the wire (V) ; E :: field along the wire ; l :: length of the wire (m) ; @J ; \sigma :: conductivity (S/m) ; A :: cross-section area (m²) ; I :: current (A) ; R :: resistance (Ω)
+L618: v :: voltage (V) ; i :: current (A) ; R :: resistance (Ω) ; q :: charge (C) ; C :: capacitance (F) ; t :: time
+L619: \kappa :: dielectric constant (relative permittivity) ; Q_0,V_0,E_0,U_0,C_0 :: values before the dielectric goes in ; Q,V,E,U,C :: values after ; d :: plate separation ; U :: stored energy (J)
 `;
 const SYMBOLS = {};
 SYMBOL_TABLE.trim().split('\n').forEach(line=>{
   const i=line.indexOf(':'); const id=line.slice(0,i).trim();
   SYMBOLS[id]=line.slice(i+1).split(' ; ').map(p=>{
     p=p.trim();
-    if(p[0]==='@'&&COMMON[p.slice(1)]) p=COMMON[p.slice(1)];
+    const at=/^@(\w+)(?:\s*::\s*([\s\S]*))?$/.exec(p);
+    if(at&&COMMON[at[1]]){ // "@rho" = shared entry; "@rho :: custom meaning" = shared symbol with its own wording
+      const shared=COMMON[at[1]]; p=at[2]?shared.slice(0,shared.indexOf('::')).trim()+' :: '+at[2].trim():shared;
+    }
     const j=p.indexOf('::');
     return j<0?[null,p]:[p.slice(0,j).trim(),p.slice(j+2).trim()];
   });

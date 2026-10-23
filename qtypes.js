@@ -105,6 +105,12 @@ const QTYPES = [
  find:"capacitor"
 },
 {
+ id:"q-res", icon:"🔌", scope:"mid", freq:1, title:"Current, current density & resistance (Lecture 6e)",
+ sources:["Lecture 6e slides 25–26 – copper conductor (1.524 cm diameter, 365.76 m, 50 A, $\\sigma=5.8\\times10^7$ S/m): find R, J and the voltage","Lecture 6e slides 18–24 – $I=dQ/dt$, $J=I/A$, $J=\\rho v$, $\\vec v=-\\mu\\vec E$, Ohm's law","Hayt 5.10, 5.12, 5.13, 5.14 – composite wires, radial flow between spheres, hollow tube, $E$ from $J$","No past-paper question yet: new this year, so expect something close to the slide example"],
+ steps:["Cross-section first: $A=\\pi r^2$ (use the radius, not the diameter). Annulus: $\\pi(r_{out}^2-r_{in}^2)$.","$R=l/(\\sigma A)$, $J=I/A$, $V=IR$ (or $V=El$ with $E=J/\\sigma$). Check units: S/m, A/m², V.","Different materials carrying the same voltage are in parallel: add $\\sigma_iA_i$, then $E=I/\\sum\\sigma_iA_i$ is the same in every layer.","Radial flow (coax, spheres): $J=I/(\\text{area at }r)$, $E=J/\\sigma(r)$, then integrate $E$ for $V$ and divide by $I$ for $R$.","Electrons: $\\vec v$ is opposite $\\vec E$, but conventional current follows the positive charge, so $\\vec J\\parallel\\vec E$."],
+ find:"resistance"
+},
+{
  id:"q-pnt", icon:"🌊", scope:"late", freq:5, title:"Capacitor + Poynting vector",
  sources:["2022 P5 · 2023 Q5 · 2024 B4 – <b>identical question three years in a row</b>","2021-22 P3 – field, potential, B and energy of a charging capacitor"],
  steps:["$E=\\frac{Q}{\\epsilon_0\\pi R^2}$ (axial); $B$ from Ampère with displacement current: $B=\\frac{\\mu_0 I r}{2\\pi R^2}$ (azimuthal).","$\\vec S=\\frac1{\\mu_0}\\vec E\\times\\vec B$ points radially <b>inward</b>.","Integrate over the side area $2\\pi Rh$: $P=\\frac{EBh\\cdot2\\pi R}{\\mu_0}$ = $\\frac{d}{dt}\\left(\\frac12\\epsilon_0E^2\\pi R^2h\\right)$."],
@@ -138,6 +144,8 @@ const QTYPES = [
 
 // Paper-by-paper map: where each topic appeared
 const PAPERS = [
+ {name:"Lecture 6e (22 Oct)", note:"Newest slides. Midterm covers Lectures 1–6 (so 6e), not Lecture 7", items:[
+   ["Slide 2","Midterm Thu 29 Oct, in class. One A4 sheet, handwritten, one side. Standard calculator."],["3–5","Conductor summary, Gauss in dielectrics, boundary-condition table"],["6","Image theory"],["8–15","Capacitors: parallel plate, dielectric, battery connected vs disconnected, 2-layer, spherical"],["16","Circuit elements: dv = R di, dq = C dv"],["17–24","Resistors: current, J, J = ρv, mobility, Ohm's law"],["25–26","Copper conductor example: R, J, V"]]},
  {name:"HW 1 (Fall 2026)", note:"This year – tells you the lecturer's style", items:[
    ["Q1–2","Vector geometry / unit vectors"],["Q3","Field of point charges (qualitative)"],["Q4","E from 2 charges, find E=0"],["Q5","Net force – cube"],["Q6","Charge from field"],["Q7","Dipole/bisector field maximum"],["Q8","Linear quadrupole"],["Opt 9","Coplanar vectors"],["Opt 10–12","Triangle, hydrogen atom, square equilibrium"]]},
  {name:"Final Dec 2024", note:"Closest in style to your lecturer", items:[
