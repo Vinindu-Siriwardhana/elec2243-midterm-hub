@@ -188,6 +188,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
     <button class="tab" data-v="papers">📄 Paper map</button>
     <button class="tab" data-v="plan">✅ Study plan</button>
     <button class="tab" data-v="practice">🧠 Practice</button>
+    <button class="tab" data-v="assign">📝 Assignments</button>
   </div>
   <div class="row">
     <input id="q" type="search" placeholder="Search equations, topics, years (e.g. gauss, 2023, HW1)…">
@@ -213,6 +214,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
   <div class="view" id="v-papers"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#06b6d4;--c2:#3b82f6">📄</span>What each paper asked</h2><p class="blurb">Click a row's topic words in the search bar of the other tabs to find the matching equations.</p><div class="grid" id="papers"></div></div>
   <div class="view" id="v-plan"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#16a34a;--c2:#10b981">✅</span>Midterm study plan <span class="cnt" id="plan-cnt" style="margin-left:auto;font-size:14px;color:var(--muted)"></span></h2><p class="blurb">Tier 1 first, then Tier 2 textbook problems. Tick each one off as you finish it.</p><div class="grid" id="plan"></div></div>
   <div class="view" id="v-practice"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#ec4899;--c2:#8b5cf6">🧠</span>Practice questions</h2><p class="blurb">Every question from the study plan. Try it on paper first, then press “Reveal answer”. Ticking “done” here also ticks it in the Study plan. Hayt problem numbers are those of the 6th-edition PDF in your folder (the slides quote 8th-edition section numbers, so they differ); check against your PDF.</p><div id="practice"></div></div>
+  <div class="view" id="v-assign"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#f59e0b;--c2:#ec4899">📝</span>Assignments</h2><p class="blurb">Homework 1, 2 and 3 with their diagrams and worked answers, including each optional practice set. Try each question first, then press “Reveal answer”.</p><div id="assign"></div></div>
   <div class="empty hidden" id="empty">No matches — try a different search.</div>
   <p class="blurb" style="margin-left:0;margin-top:30px">Compiled from Lectures 0–6 (including 6e), Homework 1 and the 2019–2024 past papers. Worked answers marked in the notes are quick checks, so verify against your own working. Ticks are saved in this browser.</p>
 </main>
@@ -223,6 +225,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
 <script src="diagrams.js"></script>
 <script src="plan.js"></script>
 <script src="practice.js"></script>
+<script src="assign.js"></script>
 <script>function safeSvg(id){try{return DIAG[id].svg()}catch(e){console.warn('diagram',id,e);return ''}}</script>
 <script>
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -264,15 +267,17 @@ function build(){
     <div class="top"><h3>${g.icon} ${g.title}</h3><span class="cnt"></span></div>${g.note?`<small>${g.note}</small>`:''}<div class="mini"><i></i></div>
     <div class="items">${g.items.map((it,k)=>{const pid=g.id+':'+k;return `<label class="pi"><input type="checkbox" data-pid="${pid}" ${planDone[pid]?'checked':''}><b>${it[0]}</b>${it[1]?`<span>${it[1]}</span>`:''}</label>`}).join('')}</div></div>`).join('')
     + `<div class="skip">🚫 ${PLAN_SKIP}</div>`;
-  $('#practice').innerHTML = PLAN.filter(g=>g.id!=='days').map(g=>{
-    const list=PRACTICE.filter(p=>p.pid.startsWith(g.id+':'));
-    return `<div class="pgroup"><h2 class="sec"><span class="num" style="--c1:${g.c[0]};--c2:${g.c[1]}">${g.icon}</span>${g.title}</h2><div class="grid">
-    ${list.map(p=>`<div class="card pq" style="--c1:${g.c[0]};--c2:${g.c[1]}" data-pid="${p.pid}" data-search="${(g.title+' '+p.src+' '+p.q).toLowerCase().replace(/<[^>]+>/g,' ').replace(/"/g,'')}">
+  // Question cards with a hidden worked answer; used by both the Practice and Assignments tabs.
+  const PQ = Object.fromEntries(PRACTICE.map(p=>[p.pid,p]));
+  const pqCard = (p,g) => `<div class="card pq" style="--c1:${g.c[0]};--c2:${g.c[1]}" data-pid="${p.pid}" data-search="${(g.title+' '+p.src+' '+p.q).toLowerCase().replace(/<[^>]+>/g,' ').replace(/"/g,'')}">
       <div class="top"><div class="name">${p.src}</div><label class="chk"><input type="checkbox" data-pid="${p.pid}" ${planDone[p.pid]?'checked':''}> done</label></div>
       <div class="qbody">${M(p.q)}</div>
       ${FIGS[p.pid]?`<div class="figs">${FIGS[p.pid].map(f=>`<img src="img/${f}.png" alt="Figure for ${p.src}" loading="lazy">`).join('')}</div>`:''}
       <button class="chip rev">Reveal answer</button>
-      <div class="ans">${M(p.a)}</div></div>`).join('')}</div></div>`}).join('');
+      <div class="ans">${M(p.a)}</div></div>`;
+  const pqGroups = (groups,showNote) => groups.map(g=>`<div class="pgroup"><h2 class="sec"><span class="num" style="--c1:${g.c[0]};--c2:${g.c[1]}">${g.icon}</span>${g.title}</h2>${showNote&&g.note?`<p class="blurb">${g.note}</p>`:''}<div class="grid">${g.items.map(p=>pqCard(p,g)).join('')}</div></div>`).join('');
+  $('#practice').innerHTML = pqGroups(PLAN.filter(g=>g.id!=='days').map(g=>({...g,items:PRACTICE.filter(p=>p.pid.startsWith(g.id+':'))})));
+  $('#assign').innerHTML = pqGroups(ASSIGN.map(g=>({...g,items:g.items.map(it=>it.ref?PQ[it.ref]:it)})),true);
   $('#nav').innerHTML = SECTIONS.map(s=>`<a href="#${s.id}">${s.id==='EM'?'Maxwell':'Lec '+s.id.slice(1)}</a>`).join('');
   $('#s-eq').textContent = SECTIONS.reduce((a,s)=>a+s.eqs.length,0);
   $('#s-q').textContent = QTYPES.length;
@@ -302,7 +307,7 @@ function apply(){
     bs.forEach(b=>b.closest('.pi').classList.toggle('ok',b.checked));
     p.querySelector('.cnt').textContent=d+'/'+bs.length; p.querySelector('.mini i').style.width=(100*d/bs.length)+'%';});
   $$('.card.pq').forEach(c=>{const d=!!planDone[c.dataset.pid];const ok=(!query||c.dataset.search.includes(query))&&!(fUndone&&d);
-    c.classList.toggle('hidden',!ok);c.classList.toggle('done',d);if(ok&&view==='practice')n++;});
+    c.classList.toggle('hidden',!ok);c.classList.toggle('done',d);if(ok&&c.closest('.view').id==='v-'+view)n++;});
   $$('.pgroup').forEach(g=>g.classList.toggle('hidden',!g.querySelector('.card:not(.hidden)')));
   {const all=$$('#plan input'),d=all.filter(b=>b.checked).length;$('#plan-cnt').textContent=d+' / '+all.length+' done';}
   $('#empty').classList.toggle('hidden',n>0);
@@ -311,7 +316,7 @@ function apply(){
   $('#nav').classList.toggle('hidden',view!=='eqs');
   $$('[data-eqonly]').forEach(b=>b.classList.toggle('hidden',view!=='eqs'));
   $$('[data-qtonly]').forEach(b=>b.classList.toggle('hidden',view!=='qt'));
-  $$('[data-pronly]').forEach(b=>b.classList.toggle('hidden',view!=='practice'));
+  $$('[data-pronly]').forEach(b=>b.classList.toggle('hidden',view!=='practice'&&view!=='assign'));
 }
 function setView(v){
   view=v; $$('.tab').forEach(t=>t.classList.toggle('on',t.dataset.v===v));
@@ -325,8 +330,11 @@ function init(){
   $('#eqs').addEventListener('change',e=>{if(e.target.type==='checkbox'){const id=e.target.closest('.card').dataset.id;done[id]=e.target.checked;store.set('done',done);apply();}});
   const onPlanTick=e=>{const id=e.target.dataset.pid;if(!id)return;planDone[id]=e.target.checked;store.set('plan',planDone);
     $$(`input[data-pid="${id}"]`).forEach(b=>b.checked=e.target.checked);apply();};
-  $('#plan').addEventListener('change',onPlanTick); $('#practice').addEventListener('change',onPlanTick);
-  $('#practice').addEventListener('click',e=>{const b=e.target.closest('.rev');if(!b)return;const open=b.closest('.pq').classList.toggle('open');b.textContent=open?'Hide answer':'Reveal answer';});
+  $('#plan').addEventListener('change',onPlanTick);
+  ['#practice','#assign'].forEach(id=>{
+    $(id).addEventListener('change',onPlanTick);
+    $(id).addEventListener('click',e=>{const b=e.target.closest('.rev');if(!b)return;const open=b.closest('.pq').classList.toggle('open');b.textContent=open?'Hide answer':'Reveal answer';});
+  });
   $('#revall').addEventListener('click',e=>{const on=e.target.classList.toggle('on');e.target.textContent=on?'Hide all answers':'Show all answers';
     $$('.pq').forEach(c=>{c.classList.toggle('open',on);c.querySelector('.rev').textContent=on?'Hide answer':'Reveal answer';});});
   $('#f-undone').addEventListener('click',e=>{fUndone=e.target.classList.toggle('on');apply();});
