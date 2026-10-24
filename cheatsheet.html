@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ELEC2243 Midterm A4 Sheet</title>
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="katex/katex.min.js"></script>
+<script src="katex/auto-render.min.js"></script>
+<style>
+/* One side of A4. Master copy to hand-copy onto the allowed sheet. Lectures 1–6 (incl. 6e) + HW1–3 only. */
+@page { size: A4 portrait; margin: 5mm; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #fff; color: #111; }
+body { font: 8.9pt/1.2 "Segoe UI", Arial, sans-serif; }
+.page { width: 200mm; height: 287mm; margin: 0 auto; overflow: hidden; column-count: 3; column-gap: 2.2mm; column-rule: 0.2mm solid #bbb; column-fill: auto; }
+h1 { column-span: all; font-size: 8.4pt; margin: 0 0 1mm; padding-bottom: .6mm; border-bottom: .4mm solid #111; display: flex; justify-content: space-between; }
+h1 small { font-weight: 400; font-size: 6.4pt; }
+h2 { font-size: 7.2pt; margin: 1.1mm 0 .4mm; padding: .2mm 1mm; background: #e8e8e8; border-left: .8mm solid #333; break-after: avoid; }
+h3 { font-size: 6.6pt; margin: .7mm 0 .1mm; text-decoration: underline; break-after: avoid; }
+p, li { margin: .15mm 0; }
+ul { margin: 0; padding-left: 3mm; }
+table { border-collapse: collapse; width: 100%; margin: .3mm 0; break-inside: avoid; }
+td, th { border: .15mm solid #999; padding: .15mm .5mm; vertical-align: middle; text-align: left; }
+th { background: #f2f2f2; font-weight: 600; }
+.k { font-weight: 700; }
+table.sm { font-size: .88em; }
+.tip { color: #333; font-style: italic; }
+.box { border: .2mm solid #555; padding: .4mm .8mm; margin: .5mm 0; break-inside: avoid; }
+.katex { font-size: 1.02em; }
+.katex-display { margin: .2mm 0; }
+@media screen { body { background: #ddd; padding: 6mm 0; } .page { background: #fff; padding: 0; box-shadow: 0 0 4mm #888; } }
+</style>
+</head>
+<body>
+<div class="page" id="sheet">
+<h1>ELEC2243 Midterm · Lectures 1–6 <small>$k=\tfrac1{4\pi\epsilon_0}=8.99\times10^9$ · $\epsilon_0=8.854\times10^{-12}$ F/m · $e=1.602\times10^{-19}$ C · V/m = N/C · J = C·V</small></h1>
+
+<h2>0 · Vectors &amp; coordinates</h2>
+<p>$\vec R_{12}=\vec r_2-\vec r_1$ (source → field pt) · $\hat a=\vec A/|\vec A|$ · $\vec A\cdot\vec B=AB\cos\theta=A_xB_x+A_yB_y+A_zB_z$</p>
+<p>$|\vec A\times\vec B|=AB\sin\theta$ · $\hat x\times\hat y=\hat z,\ \hat y\times\hat z=\hat x,\ \hat z\times\hat x=\hat y$ · proj of $\vec A$ on $\vec B$: $\dfrac{\vec A\cdot\vec B}{|\vec B|^2}\vec B$</p>
+<p><span class="k">Cyl</span> $x=\rho\cos\phi,\ y=\rho\sin\phi$; $\rho=\sqrt{x^2+y^2},\ \phi=\tan^{-1}\tfrac yx$</p>
+<p><span class="k">Sph</span> $x=r\sin\theta\cos\phi,\ y=r\sin\theta\sin\phi,\ z=r\cos\theta$; $r=\sqrt{x^2+y^2+z^2},\ \theta=\cos^{-1}\tfrac zr$</p>
+<table>
+<tr><th>·</th><th>$\hat a_\rho$</th><th>$\hat a_\phi$</th><th>$\hat a_r$</th><th>$\hat a_\theta$</th><th>$\hat a_\phi$</th></tr>
+<tr><td>$\hat a_x$</td><td>$\cos\phi$</td><td>$-\sin\phi$</td><td>$\sin\theta\cos\phi$</td><td>$\cos\theta\cos\phi$</td><td>$-\sin\phi$</td></tr>
+<tr><td>$\hat a_y$</td><td>$\sin\phi$</td><td>$\cos\phi$</td><td>$\sin\theta\sin\phi$</td><td>$\cos\theta\sin\phi$</td><td>$\cos\phi$</td></tr>
+<tr><td>$\hat a_z$</td><td>0</td><td>0</td><td>$\cos\theta$</td><td>$-\sin\theta$</td><td>0</td></tr>
+</table>
+<p class="tip">Cyl: $\hat a_z\cdot\hat a_z=1$. Component: $A_\rho=\vec A\cdot\hat a_\rho$ etc. Convert both the components and the variables.</p>
+<h3>Line, surface, volume elements</h3>
+<p><b>Cart</b> $d\vec L=dx\,\hat a_x+dy\,\hat a_y+dz\,\hat a_z$</p>
+<p><b>Cyl</b> $d\vec L=d\rho\,\hat a_\rho+\rho\,d\phi\,\hat a_\phi+dz\,\hat a_z$</p>
+<p><b>Sph</b> $d\vec L=dr\,\hat a_r+r\,d\theta\,\hat a_\theta+r\sin\theta\,d\phi\,\hat a_\phi$</p>
+<table class="sm">
+<tr><th></th><th>$dS$ (normal direction)</th><th>$dv$</th></tr>
+<tr><td>Cart</td><td>$dy\,dz\,(\hat x)$ · $dx\,dz\,(\hat y)$ · $dx\,dy\,(\hat z)$</td><td>$dx\,dy\,dz$</td></tr>
+<tr><td>Cyl</td><td>side $\rho\,d\phi\,dz\,(\hat\rho)$ · $d\rho\,dz\,(\hat\phi)$ · cap $\rho\,d\rho\,d\phi\,(\hat z)$</td><td>$\rho\,d\rho\,d\phi\,dz$</td></tr>
+<tr><td>Sph</td><td>$r^2\sin\theta\,d\theta\,d\phi\,(\hat r)$ · $r\sin\theta\,dr\,d\phi\,(\hat\theta)$ · $r\,dr\,d\theta\,(\hat\phi)$</td><td>$r^2\sin\theta\,dr\,d\theta\,d\phi$</td></tr>
+</table>
+<p>Sphere $4\pi r^2$, $\tfrac43\pi r^3$ · cylinder side $2\pi\rho L$, vol $\pi\rho^2L$ · $\int_0^\pi\sin\theta\,d\theta=2$</p>
+<h3>Gradient &amp; divergence</h3>
+<p>$\nabla V=\tfrac{\partial V}{\partial x}\hat x+\tfrac{\partial V}{\partial y}\hat y+\tfrac{\partial V}{\partial z}\hat z$</p>
+<p>$=\tfrac{\partial V}{\partial\rho}\hat a_\rho+\tfrac1\rho\tfrac{\partial V}{\partial\phi}\hat a_\phi+\tfrac{\partial V}{\partial z}\hat a_z$</p>
+<p>$=\tfrac{\partial V}{\partial r}\hat a_r+\tfrac1r\tfrac{\partial V}{\partial\theta}\hat a_\theta+\tfrac1{r\sin\theta}\tfrac{\partial V}{\partial\phi}\hat a_\phi$</p>
+<p>$\nabla\!\cdot\!\vec D=\tfrac{\partial D_x}{\partial x}+\tfrac{\partial D_y}{\partial y}+\tfrac{\partial D_z}{\partial z}$</p>
+<p>$=\tfrac1\rho\tfrac{\partial(\rho D_\rho)}{\partial\rho}+\tfrac1\rho\tfrac{\partial D_\phi}{\partial\phi}+\tfrac{\partial D_z}{\partial z}$</p>
+<p>$=\tfrac1{r^2}\tfrac{\partial(r^2D_r)}{\partial r}+\tfrac1{r\sin\theta}\tfrac{\partial(\sin\theta D_\theta)}{\partial\theta}+\tfrac1{r\sin\theta}\tfrac{\partial D_\phi}{\partial\phi}$</p>
+<p>Div. thm $\oint_S\vec D\cdot d\vec S=\int_v\nabla\!\cdot\!\vec D\,dv$ · $\nabla^2V=\tfrac{\partial^2V}{\partial x^2}+\tfrac{\partial^2V}{\partial y^2}+\tfrac{\partial^2V}{\partial z^2}$</p>
+<p>$(1+x)^n\approx1+nx$ ($x\ll1$) · $\displaystyle\int\!\frac{dx}{(s^2+x^2)^{3/2}}=\frac{x}{s^2\sqrt{s^2+x^2}}$ · $\displaystyle\int\!\frac{r\,dr}{(r^2+h^2)^{3/2}}=\frac{-1}{\sqrt{r^2+h^2}}$</p>
+
+<h2>2 · Point charges</h2>
+<p>$\vec F_{12}=\dfrac{Q_1Q_2}{4\pi\epsilon_0}\dfrac{\vec R_{12}}{|\vec R_{12}|^3}$ · $\vec E=\vec F/q$ · $\vec E(\vec r)=\sum_i\dfrac{Q_i(\vec r-\vec r_i)}{4\pi\epsilon_0|\vec r-\vec r_i|^3}$</p>
+<p class="tip">Add as vectors (components). Use symmetry to cancel components first.</p>
+<p><span class="k">Dipole</span> $\vec p=Q\vec d$ (− → +) · $\vec\tau=\vec p\times\vec E$ · $U=-\vec p\cdot\vec E$</p>
+<p>Far: $V=\dfrac{p\cos\theta}{4\pi\epsilon_0r^2}$, $E_r=\dfrac{2p\cos\theta}{4\pi\epsilon_0r^3}$, $E_\theta=\dfrac{p\sin\theta}{4\pi\epsilon_0r^3}$</p>
+<p>Equal $Q$, $\pm d/2$, on bisector: $E=\dfrac{2kQy}{(y^2+d^2/4)^{3/2}}$, max at $y=\dfrac d{2\sqrt2}$</p>
+<p>Dipole on bisector: $E=\dfrac{kQd}{(s^2+d^2/4)^{3/2}}\to\dfrac{kp}{s^3}$, antiparallel to $\vec p$</p>
+<p>Uniform $\vec E$: $\vec F_{net}=0$ on a dipole, only torque · fall-off: dipole $r^{-3}$, point $r^{-2}$, line $r^{-1}$, plane const</p>
+
+<h2>3 · Continuous charge</h2>
+<p>$dq=\rho_L\,dL=\rho_s\,dS=\rho_v\,dv$ · $\vec E=k\displaystyle\int\frac{dq\,\vec R}{R^3}$ ($\vec R$ from $dq$ to P)</p>
+<table>
+<tr><td>Infinite line</td><td>$\vec E=\dfrac{\rho_L}{2\pi\epsilon_0\rho}\hat a_\rho$</td></tr>
+<tr><td>Finite line $L$, bisector</td><td>$E=\dfrac{\rho_LL}{4\pi\epsilon_0\rho\sqrt{\rho^2+L^2/4}}$</td></tr>
+<tr><td>Ring $a$, axis</td><td>$E_z=\dfrac{Qz}{4\pi\epsilon_0(z^2+a^2)^{3/2}}$ ($N$ charges: $Q=Nq$)</td></tr>
+<tr><td>Disc $a$, axis</td><td>$E_z=\dfrac{\rho_s}{2\epsilon_0}\Big[1-\dfrac{z}{\sqrt{z^2+a^2}}\Big]$</td></tr>
+<tr><td>Infinite sheet</td><td>$\vec E=\dfrac{\rho_s}{2\epsilon_0}\hat a_n$ (away from +)</td></tr>
+<tr><td>Plates $\pm\rho_s$</td><td>$\rho_s/\epsilon_0$ between, 0 outside</td></tr>
+</table>
+
+<h2>4 · Gauss's law</h2>
+<p>$\Psi=\oint\vec D\cdot d\vec S=Q_{enc}$ · $\nabla\!\cdot\!\vec D=\rho_v$ · $\vec D=\epsilon_0\vec E$ (vacuum)</p>
+<p>Flat surface, uniform $E$: $\Phi=EA\cos\theta$ ($\theta$ from normal) · charge outside closed $S$: $\Phi=0$</p>
+<table>
+<tr><th>Symmetry</th><th>Surface</th><th>Result</th></tr>
+<tr><td>Sphere</td><td>sphere $4\pi r^2$</td><td>$D_r=Q_{enc}/4\pi r^2$</td></tr>
+<tr><td>Line/cyl</td><td>cyl $2\pi\rho L$ (ends 0)</td><td>$D_\rho=\rho_L/2\pi\rho$; shell $a$: $D_\rho=a\rho_s/\rho$</td></tr>
+<tr><td>Plane</td><td>pillbox $2A$</td><td>$D=\rho_s/2$</td></tr>
+</table>
+<p>$Q_{enc}(r)=\int_0^r\rho_v(r')\,4\pi r'^2dr'$ · cyl: $\int_0^\rho\rho_v\,2\pi\rho'L\,d\rho'$</p>
+<p>Uniform sphere: $E=\dfrac{\rho_vr}{3\epsilon_0}$ in, $\dfrac{Q}{4\pi\epsilon_0r^2}$ out · slab $D$: $E=\dfrac{\rho_vz}{\epsilon_0}$ in, $\dfrac{\rho_vD}{2\epsilon_0}$ out</p>
+<p>Cavity (offset $\vec a$): $\vec E=\dfrac{\rho_v}{3\epsilon_0}\vec a$, uniform · small vol: $Q\approx(\nabla\!\cdot\!\vec D)|_P\,\Delta v$</p>
+<p>Concentric shells/coax: $Q_{enc}$ = sum of shells inside $r$; $E=0$ where $Q_{enc}=0$</p>
+
+<h2>5 · Potential &amp; energy</h2>
+<p>$W=-Q\displaystyle\int_{\text{init}}^{\text{final}}\vec E\cdot d\vec L$ (path-independent) · $V_{AB}=V_A-V_B=-\displaystyle\int_B^A\vec E\cdot d\vec L$ · $W=QV_{AB}$</p>
+<p>Poisson $\nabla^2V=-\dfrac{\rho_v}{\epsilon_0}$ · Laplace $\nabla^2V=0$ · equipotential: $dV=-\vec E\cdot d\vec L$, $\vec E\perp$ surface</p>
+<p>$\vec E=-\nabla V$ · $\oint\vec E\cdot d\vec L=0$ · $\nabla\times\vec E=0$ ·$V=\sum\dfrac{Q_i}{4\pi\epsilon_0R_i}$ · $V=k\displaystyle\int\frac{dq}{R}$</p>
+<p>Line: $V_{AB}=\dfrac{\rho_L}{2\pi\epsilon_0}\ln\dfrac{\rho_B}{\rho_A}$ · charged sphere/shell $a$: $V=\dfrac{kQ}{r}$ ($r\ge a$), $\dfrac{kQ}{a}$ inside</p>
+<p>Disc axis: $V=\dfrac{\rho_s}{2\epsilon_0}\big(\sqrt{z^2+a^2}-z\big)$ · $E_x=-dV/dx$; kink in $V(x)\Rightarrow$ sheet $\rho_s=\epsilon_0\Delta E$</p>
+<p class="tip">Piecewise V (shells): start at $V(\infty)=0$, integrate inward region by region, keep V continuous.</p>
+<p><span class="k">Energy</span> $W_E=\tfrac12\sum Q_kV_k=\sum_{i\lt j}\dfrac{kQ_iQ_j}{R_{ij}}$ · $\tfrac12\displaystyle\int\rho_vV\,dv=\tfrac12\int\vec D\cdot\vec E\,dv$ · $w=\tfrac12\epsilon E^2$</p>
+
+<h2>6 · Conductors</h2>
+<p>Inside: $E=0$, $\rho_v=0$, $V$ const; charge on surface. Surface: $E_t=0$, $D_n=\rho_s$, $E_n=\rho_s/\epsilon$</p>
+<p>Plates: facing faces $\sigma_2=-\sigma_3$; outer $\sigma_1=\sigma_4=\dfrac{q_{tot}}{2S}$; grounded → outer faces 0</p>
+<p><span class="k">Images</span> grounded plane: remove plane, put $-Q$ at mirror point (valid on real side only). Plane: $\rho_s=\epsilon_0E_n$.</p>
+<p>Line $\rho_L$ at $h$: $E_n=\dfrac{\rho_Lh}{\pi\epsilon_0(x^2+h^2)}$, $\rho_s=-\dfrac{\rho_Lh}{\pi(x^2+h^2)}$</p>
+<p>Closed cavity (no charge) $E=0$ · for $r>a$: solid sphere ≡ shell ≡ point $Q$</p>
+
+<h2>6 · Dielectrics</h2>
+<p>$\vec P=\chi_e\epsilon_0\vec E$ · $\vec D=\epsilon_0\vec E+\vec P=\epsilon\vec E$ · $\epsilon=\epsilon_r\epsilon_0$, $\epsilon_r=1+\chi_e$ · $\rho_b=-\nabla\!\cdot\!\vec P$, $\sigma_b=\vec P\cdot\hat n$</p>
+<p>$\oint\vec D\cdot d\vec S=Q_{free}$: find $D$ first, then $E=D/\epsilon$</p>
+<table>
+<tr><th>Boundary</th><th>Rule</th></tr>
+<tr><td>Tangential</td><td>$E_{1t}=E_{2t}$, $D_{1t}/\epsilon_1=D_{2t}/\epsilon_2$</td></tr>
+<tr><td>Normal</td><td>$D_{1n}-D_{2n}=\rho_s$ (0 for dielectrics), $\epsilon_1E_{1n}-\epsilon_2E_{2n}=\rho_s$</td></tr>
+</table>
+<p>Refraction: $\dfrac{\tan\theta_1}{\tan\theta_2}=\dfrac{\epsilon_1}{\epsilon_2}$ ($\theta$ from normal) · normal $z$: $\vec E_2=E_{1x}\hat x+E_{1y}\hat y+\tfrac{\epsilon_1}{\epsilon_2}E_{1z}\hat z$</p>
+<p>In capacitor: bound $\sigma'=\sigma\big(1-\tfrac1{\epsilon_r}\big)$, $E=\dfrac{\sigma-\sigma'}{\epsilon_0}=\dfrac{\sigma}{\epsilon_r\epsilon_0}$</p>
+
+<h2>6 · Capacitors</h2>
+<p>$C=Q/V$ · $W=\tfrac12CV^2=\tfrac12QV=\dfrac{Q^2}{2C}$ · parallel $C_1+C_2$ (same $V$) · series $\tfrac1C=\sum\tfrac1{C_i}$ (same $Q$)</p>
+<table>
+<tr><td>Plates</td><td>$\dfrac{\epsilon S}{d}$</td><td>Coax</td><td>$\dfrac{2\pi\epsilon L}{\ln(b/a)}$</td></tr>
+<tr><td>Spheres</td><td>$\dfrac{4\pi\epsilon ab}{b-a}$</td><td>Isolated</td><td>$4\pi\epsilon a$</td></tr>
+</table>
+<p>Layers ⟂ field (series, same $D$): $\tfrac1C=\tfrac{d_1}{\epsilon_1S}+\tfrac{d_2}{\epsilon_2S}$ · side by side (parallel, same $E$): $C=\tfrac{\epsilon_1S_1+\epsilon_2S_2}{d}$</p>
+<p>Coax/sphere layers: series sum of $\tfrac{\ln(b/a)}{2\pi\epsilon L}$ or $\tfrac{1}{4\pi\epsilon}(\tfrac1a-\tfrac1b)$ per layer · metal slab $t$: $C=\tfrac{\epsilon_0S}{d-t}$</p>
+<table>
+<tr><th>Insert $\epsilon_r$</th><th>$C$</th><th>$Q$</th><th>$V$</th><th>$E$</th><th>$W$</th></tr>
+<tr><td>Battery on ($V$ fixed)</td><td>$\epsilon_rC_0$</td><td>$\epsilon_rQ_0$</td><td>$V_0$</td><td>$E_0$</td><td>$\epsilon_rW_0$</td></tr>
+<tr><td>Isolated ($Q$ fixed)</td><td>$\epsilon_rC_0$</td><td>$Q_0$</td><td>$V_0/\epsilon_r$</td><td>$E_0/\epsilon_r$</td><td>$W_0/\epsilon_r$</td></tr>
+</table>
+
+<h2>6e · Current &amp; resistance</h2>
+<p>$I=\dfrac{dQ}{dt}=\displaystyle\int_S\vec J\cdot d\vec S$ · $\vec J=\rho_v\vec v$ · $\vec v_e=-\mu_e\vec E$ · $\vec J=\sigma\vec E$, $\sigma=-\rho_e\mu_e$ (S/m)</p>
+<p>$\Delta V=EL$, $J=\sigma E=\dfrac IS$ ⇒ $V=IR$, $R=\dfrac{L}{\sigma S}$ · $\mu_e$: m²/(V·s), $\sigma$: S/m = 1/(Ω·m)</p>
+<p>Circuit: $dv=R\,di$ · $dq=C\,dv$ · $dq=i\,dt$ ⇒ $i=C\,\dfrac{dv}{dt}$</p>
+<p class="tip">With current flowing $E\ne0$ inside a conductor (not equipotential).</p>
+
+<div class="box"><span class="k">Recipes</span>
+<ul>
+<li><b>Gauss:</b> symmetry → surface where $D$ const &amp; ⟂ → $Q_{enc}$ per region → $D$ → $E=D/\epsilon$.</li>
+<li><b>C:</b> assume $\pm Q$ → $D$ (Gauss) → $E$ → $V=-\int E\,dL$ → $C=Q/V$. <b>R:</b> assume $I$ → $J$ → $E$ → $V$ → $R=V/I$.</li>
+<li><b>Work/V:</b> pick the easiest path; $V$ is a scalar (no components). Check sign: $+Q$ moved against $\vec E$ ⇒ $W&gt;0$.</li>
+<li><b>Traps:</b> $\vec R$ points source → P · $\rho$ = radius vs $\rho_v$ = charge · cm/mm/nC/μC · $V(\infty)=0$ not valid for infinite lines/sheets.</li>
+</ul></div>
+</div>
+<script>
+renderMathInElement(document.body,{delimiters:[{left:"$",right:"$",display:false}],throwOnError:false});
+</script>
+</body>
+</html>
