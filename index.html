@@ -271,7 +271,7 @@ function build(){
     <table>${p.items.map(i=>`<tr><td>${M(i[0])}</td><td>${M(i[1])}</td></tr>`).join('')}</table></div>`).join('');
   $('#plan').innerHTML = PLAN.map(g=>`<div class="pap pg ${g.items.every(i=>!i[1])?'chips':''}" style="--c1:${g.c[0]};--c2:${g.c[1]}" data-search="${(g.title+' '+g.note+' '+g.items.map(i=>i.join(' ')).join(' ')).toLowerCase().replace(/"/g,'')}">
     <div class="top"><h3>${g.icon} ${g.title}</h3><span class="cnt"></span></div>${g.note?`<small>${g.note}</small>`:''}<div class="mini"><i></i></div>
-    <div class="items">${g.items.map((it,k)=>{const pid=g.id+':'+k;return `<label class="pi"><input type="checkbox" data-pid="${pid}" ${planDone[pid]?'checked':''}><b>${it[0]}</b>${it[1]?`<span>${it[1]}</span>`:''}</label>`}).join('')}</div></div>`).join('')
+    <div class="items">${g.items.map((it,k)=>{const pid=it[2]||g.id+':'+k;return `<label class="pi"><input type="checkbox" data-pid="${pid}" ${planDone[pid]?'checked':''}><b>${it[0]}</b>${it[1]?`<span>${it[1]}</span>`:''}</label>`}).join('')}</div></div>`).join('')
     + `<div class="skip">🚫 ${PLAN_SKIP}</div>`;
   // Question cards with a hidden worked answer; used by both the Practice and Assignments tabs.
   const PQ = Object.fromEntries(PRACTICE.map(p=>[p.pid,p]));
@@ -282,7 +282,7 @@ function build(){
       <button class="chip rev">Reveal answer</button>
       <div class="ans">${M(p.a)}</div></div>`;
   const pqGroups = (groups,showNote) => groups.map(g=>`<div class="pgroup"><h2 class="sec"><span class="num" style="--c1:${g.c[0]};--c2:${g.c[1]}">${g.icon}</span>${g.title}</h2>${showNote&&g.note?`<p class="blurb">${g.note}</p>`:''}<div class="grid">${g.items.map(p=>pqCard(p,g)).join('')}</div></div>`).join('');
-  $('#practice').innerHTML = pqGroups(PLAN.filter(g=>g.id!=='days').map(g=>({...g,items:PRACTICE.filter(p=>p.pid.startsWith(g.id+':'))})));
+  $('#practice').innerHTML = pqGroups(PLAN.filter(g=>g.id!=='days').map(g=>({...g,items:PRACTICE.filter(p=>p.pid.startsWith(g.id+':'))})).filter(g=>g.items.length));
   $('#assign').innerHTML = pqGroups(ASSIGN.map(g=>({...g,items:g.items.map(it=>it.ref?PQ[it.ref]:it)})),true);
   $('#nav').innerHTML = SECTIONS.map(s=>`<a href="#${s.id}">${s.id==='EM'?'Maxwell':'Lec '+s.id.slice(1)}</a>`).join('');
   $('#s-eq').textContent = SECTIONS.reduce((a,s)=>a+s.eqs.length,0);

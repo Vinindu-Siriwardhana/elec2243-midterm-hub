@@ -1,18 +1,24 @@
-// Midterm study plan (Lectures 0–6). Each item: [label, detail]. Ticks are stored under 'plan' in localStorage.
+// Midterm study plan (Lectures 0–6). Each item: [label, detail, pid?]. Ticks are stored under 'plan' in localStorage,
+// keyed by pid (default groupId:index). An explicit pid keeps a trimmed item linked to its Practice card.
 const PLAN = [
- {id:"days", title:"Schedule: Fri 23 → Thu 29 Oct", icon:"📅", c:["#f59e0b","#f97316"], note:"Midterm Thu 29 Oct in class: Lectures 1–6 including 6e (resistors). Lecture 7 is not included. One A4 sheet, handwritten, one side; standard calculator.", items:[
-   ["Fri 23","Vectors, point charges, continuous charge: HW1, 2e/3e slides, 2019 Q1, 2024 B1, Hayt Ch 1–2 picks"],
-   ["Sat 24","Gauss: 4e slides, 2021-22 P2, 2022 P2, 2024 MCQ 1–3, Hayt Ch 3 picks"],
-   ["Sun 25","Potential + energy: 5e slides, 2023 Q2–Q3, 2022 P3, 2024 B6, Hayt Ch 4 picks"],
-   ["Mon 26","Conductors, images, dielectrics, capacitors: Lecture 6 + 6e examples, 2024 B2, 2019 Q2(c)–(d), Hayt Ch 5 picks"],
-   ["Tue 27","6e resistors (current, J, Ohm's law): 6e slides, Hayt 5.10–5.14. Homework 3 is due at midnight tonight."],
-   ["Wed 28","Timed mock (~75 min): 2023 Q2 + Q3, 2024 B2 + MCQ 1–3, plus one resistance question. Then finalise the A4 sheet and redo mistakes."],
-   ["Thu 29","Midterm. Bring calculator, A4 sheet, ID."]]},
+ {id:"days", title:"Schedule: Sat 24 → Thu 29 Oct", icon:"📅", c:["#f59e0b","#f97316"], note:"Midterm Thu 29 Oct in class: Lectures 1–6 including 6e (resistors). Lecture 7 is not included. One A4 sheet, handwritten, one side; standard calculator. Add to the A4 sheet at the end of every day, not just Wednesday.", items:[
+   ["Sat 24","Vectors and coordinates (Lecture 0): cylindrical and spherical unit vectors, dL / dS / dV in each system, gradient and divergence. Then point charges and continuous charge: HW1, 2e/3e slides, Hayt 1.19, 1.29, 2.19, 2.23, 2.25, 2019 Q1, 2024 B1, 2021-22 P1. A4: coordinate elements, Coulomb, E of line, ring, disc and sheet.","days:sat24"],
+   ["Sun 25","Gauss and divergence: HW2 Q1–Q4, 4e slides, Hayt 3.12, 3.14, 3.25, 2021-22 P2, 2022 P2, 2024 MCQ 1–3. A4: Gauss surfaces for sphere, cylinder and plane; ∇·D in all three systems.","days:sun25"],
+   ["Mon 26","Potential and energy: HW2 Q5–Q8, 5e slides, Hayt 4.16, 4.24, 4.35, 2022 P3, 2024 B6, 2019 Q2. A4: V of standard shapes, E = −∇V, dipole, W = ½∫D·E dv, C = Q/V.","days:mon26"],
+   ["Tue 27","Conductors, images, dielectrics, capacitors, resistors: HW3 Q1–Q7, Lecture 6 + 6e examples, Hayt 5.31, 5.44, 5.10. Submit Homework 3 by midnight. A4: boundary conditions, image rules, C of plate / coax / sphere, J = σE, R = l/σA.","days:tue27"],
+   ["Wed 28","Timed mock (~90 min), all unseen: 2023 Q2 + Q3, 2024 B2, Hayt 5.20 (image), Hayt 5.36 (dielectric, source removed), Hayt 5.12 (resistance). Mark it, redo mistakes, then copy out the final A4 sheet.","days:wed28"],
+   ["Thu 29","Midterm. Bring calculator, A4 sheet, ID.","days:thu29"]]},
  {id:"hw", title:"Tier 1 · Homework 1", icon:"📝", c:["#6366f1","#8b5cf6"], note:"Redo without looking at your submission. Q5 and Q8 are the hardest.", items:[
    ["Q1–2","Unit vectors of a triangle; vector endpoint"],["Q3","Field felt by q and −4q"],["Q4","E from two charges; where E_y = 0 (Hayt 2.5)"],
    ["Q5","Net force on a cube corner charge"],["Q6","Charge from a measured field"],["Q7","Max force on the bisector of two nuclei"],
    ["Q8","Linear quadrupole field on axis"],["Opt 10","Equilateral triangle forces"],["Opt 12","Square: Q vs q for zero net force"]]},
- {id:"pp", title:"Tier 1 · Past-paper questions in scope", icon:"📄", c:["#06b6d4","#3b82f6"], note:"All five papers are finals, so only these parts are midterm material.", items:[
+ {id:"a2", title:"Tier 1 · Homework 2", icon:"2️⃣", c:["#0ea5e9","#06b6d4"], note:"Same instructor as the midterm, so this is the closest guide to its style. Worked solutions are in the Assignments tab; ticks stay in sync.", items:[
+   ["Q1","Coaxial cylindrical shells: E everywhere"],["Q2","Gauss with ρ = 50 r e^(−r)"],["Q3","Cube flux vs ∇·E estimate"],["Q4","ρ_v from a piecewise E; total Q"],
+   ["Q5","Work along three paths"],["Q6","E and ρ_v from V = 2xy²z³"],["Q7","Disc on axis: V first, then E"],["Q8","V between two charged planes"]]},
+ {id:"a3", title:"Tier 1 · Homework 3", icon:"3️⃣", c:["#f59e0b","#f97316"], note:"Due Tue 27 Oct. Worked solutions are in the Assignments tab; ticks stay in sync.", items:[
+   ["Q1","Image method: two charges near a grounded plane"],["Q2","Total current from J = J₀ρ/a"],["Q3","Ohm's law in a wire"],["Q4","Three dielectric slabs: boundary conditions"],
+   ["Q5","Free space / dielectric interface"],["Q6","Coaxial capacitor"],["Q7","Two-layer parallel-plate capacitor"]]},
+ {id:"pp", title:"Tier 1 · Past-paper questions in scope", icon:"📄", c:["#06b6d4","#3b82f6"], note:"All five papers are finals, so only these parts are midterm material. Keep 2023 Q2, 2023 Q3 and 2024 B2 unseen for Wednesday's mock.", items:[
    ["2023 Q2","Concentric shells: E, ΔV, C, U — the most typical midterm question"],
    ["2023 Q3","Sphere with ρ = αr: E in/out, V at the surface"],
    ["2023 MCQ 1.2, 1.5","Force scaling, vector quantities"],
@@ -44,17 +50,17 @@ const PLAN = [
    ["6e 20–24","Derive J = ρv and Ohm's law R = l/σA"],
    ["6e 10–12","Dielectric inserted: battery connected vs disconnected (Q, V, E, C, U)"],
    ["6e 5","Conductor–dielectric boundary: D and E just outside a charged conductor"]]},
- {id:"h5b", title:"Tier 2 · Hayt Ch 5 — current & resistance (Lecture 6e)", icon:"🔋", c:["#64748b","#334155"], note:"", items:[
-   ["5.3","J through part of a sphere"],["5.10","Steel wire with aluminium coating"],["5.12","Radial current between spheres, σ constant and σ ∝ 1/r"],["5.13","Hollow brass tube"],["5.14","E in a conductor from J, mobility or resistivity"]]},
- {id:"h1", title:"Tier 2 · Hayt Ch 1 — vectors & coordinates", icon:"📐", c:["#64748b","#334155"], note:"", items:[
-   ["1.4",""],["1.13",""],["1.19",""],["1.21",""],["1.29",""]]},
+ {id:"h1", title:"Tier 2 · Hayt Ch 1 — coordinate conversions", icon:"📐", c:["#64748b","#334155"], note:"Must-do picks only. The other Hayt problems are still in the Practice tab if you have spare time.", items:[
+   ["1.19","Cartesian → cylindrical components","h1:2"],["1.29","a_x in spherical components","h1:4"]]},
  {id:"h2", title:"Tier 2 · Hayt Ch 2 — Coulomb & charge distributions", icon:"⚡", c:["#64748b","#334155"], note:"", items:[
-   ["2.1",""],["2.6",""],["2.15",""],["2.19",""],["2.21",""],["2.23",""],["2.25",""]]},
- {id:"h3", title:"Tier 2 · Hayt Ch 3 — Gauss & divergence", icon:"🔵", c:["#64748b","#334155"], note:"", items:[
-   ["3.4",""],["3.9",""],["3.12",""],["3.13",""],["3.14",""],["3.17",""],["3.21",""],["3.25",""],["3.27",""]]},
+   ["2.19","Finite vs infinite line charge","h2:3"],["2.23","Charged disc on axis","h2:5"],["2.25","Point + line + sheet superposition","h2:6"]]},
+ {id:"h3", title:"Tier 2 · Hayt Ch 3 — Gauss & divergence", icon:"🔵", c:["#64748b","#334155"], note:"Hayt 3.17 is the same as HW2 Q3, so it is not repeated here.", items:[
+   ["3.12","ρ_v = 120r sphere; surface charge to double D","h3:2"],["3.14","Charged cylinder vs equivalent line charge","h3:4"],["3.25","ρ_v, flux and charge from D","h3:7"]]},
  {id:"h4", title:"Tier 2 · Hayt Ch 4 — potential & energy", icon:"🔋", c:["#64748b","#334155"], note:"", items:[
-   ["4.4",""],["4.6",""],["4.9",""],["4.16",""],["4.19",""],["4.24",""],["4.27",""],["4.33",""],["4.35",""]]},
- {id:"h5", title:"Tier 2 · Hayt Ch 5 — conductors, dielectrics, capacitance", icon:"🧱", c:["#64748b","#334155"], note:"", items:[
-   ["5.20","Image of a point charge"],["5.21","Image of line charges"],["5.28",""],["5.31","Dielectric boundary conditions"],["5.34",""],["5.36",""],["5.41",""],["5.44",""],["5.45",""]]},
+   ["4.16","V(r) for three charged shells","h4:3"],["4.24","V = 80r² cos θ: E, D, ρ_v","h4:5"],["4.35","Energy of charges on a square","h4:8"]]},
+ {id:"h5", title:"Tier 2 · Hayt Ch 5 — conductors, dielectrics, capacitance", icon:"🧱", c:["#64748b","#334155"], note:"5.20 and 5.36 are saved for Wednesday's mock.", items:[
+   ["5.20","Image of a point charge (mock)","h5:0"],["5.31","Dielectric boundary conditions","h5:3"],["5.36","Dielectric withdrawn, source removed (mock)","h5:5"],["5.44","Three-layer coaxial capacitor","h5:7"]]},
+ {id:"h5b", title:"Tier 2 · Hayt Ch 5 — current & resistance (Lecture 6e)", icon:"🔋", c:["#64748b","#334155"], note:"5.12 is saved for Wednesday's mock.", items:[
+   ["5.10","Steel wire with aluminium coating","h5b:1"],["5.12","Radial current between spheres (mock)","h5b:2"]]},
 ];
 const PLAN_SKIP = "Not in the midterm: Lecture 7 onward, so every past-paper part on magnetism, induction, EM waves/Poynting and inductance; Hayt 5.24–5.26 (semiconductors); Hayt Ch 6 (field mapping); and Hayt 5.1, 5.2, 5.4–5.9 (continuity equation, vacuum tube, nichrome table), which the slides don't teach.";
