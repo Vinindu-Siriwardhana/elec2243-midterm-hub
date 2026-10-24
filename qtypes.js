@@ -1,4 +1,4 @@
-// Question types seen in Homework 1 (HW1) and the past papers.
+// Question types seen in Homework 1–3 (HW1–HW3), the lecture examples and the past papers.
 // scope: "mid" = electrostatics (Lectures 0-6, likely midterm) ; "late" = later course content (seen on finals)
 // find = keyword(s) that jump to related equations in the Equations tab
 const QTYPES = [
@@ -34,13 +34,13 @@ const QTYPES = [
 },
 {
  id:"q-gs", icon:"🔵", scope:"mid", freq:5, title:"Gauss's law – spherical symmetry",
- sources:["2023 Q2 – concentric conducting shells ($Q$, $-Q$): E in 3 regions, ΔV, capacitance, energy","2023 Q3 – non-conducting sphere $\\rho=ar$: E inside, outside, potential at surface","2022 P3 – uniform sphere with hollow at offset $a$: E and V at hollow centre","2024 B6 (bonus) – same cavity, prove field uniform in cavity"],
+ sources:["HW2 optional Q2 – thick spherical shell with $\\rho_v=3R\\times10^{-4}$: total charge","HW2 optional Q4 – two concentric shells $Q_1$, $Q_2$: E in all three regions","2023 Q2 – concentric conducting shells ($Q$, $-Q$): E in 3 regions, ΔV, capacitance, energy","2023 Q3 – non-conducting sphere $\\rho=ar$: E inside, outside, potential at surface","2022 P3 – uniform sphere with hollow at offset $a$: E and V at hollow centre","2024 B6 (bonus) – same cavity, prove field uniform in cavity"],
  steps:["Gaussian sphere radius $r$: $E\\,4\\pi r^2=Q_{enc}/\\epsilon_0$.","Non-uniform: $Q_{enc}=\\int_0^r\\rho(r')4\\pi r'^2dr'$ (for $\\rho=ar$: $\\pi ar^4$ ⇒ $E=\\frac{ar^2}{4\\epsilon_0}$ inside).","Potential: integrate $-\\int E\\,dr$ from ∞ inward, region by region.","Cavity: full sphere $+$ sphere of $-\\rho$ ⇒ $\\vec E=\\frac{\\rho}{3\\epsilon_0}\\vec a$ inside, and $V$ by superposing $V=\\frac{\\rho}{6\\epsilon_0}(3R^2-r^2)$ pieces."],
  find:"spherical"
 },
 {
  id:"q-gc", icon:"🥫", scope:"mid", freq:3, title:"Gauss's law – cylindrical symmetry",
- sources:["Lecture 4 – infinite rod with uniform charge, E outside","2021-22 P2 = Lecture 4 Problem 2 – coaxial cylindrical shells $\\rho_{s1},\\rho_{s2}$: E everywhere, plot $|E|(r)$, condition for $E=0$ outside","2024 MCQ 2 – concentric charged cylindrical sheets, flux density inside","Lecture 4 – infinite line charge"],
+ sources:["HW2 Q1 – coaxial cylindrical shells $\\rho_{s1}$, $\\rho_{s2}$: E everywhere and a plot of $|E|$","HW2 Q2 – $\\rho_v=50\\,r\\,e^{-r}$ in cylindrical coordinates","HW2 optional Q5 – thick cylindrical shell $1<r<3$ m","Lecture 4 – infinite rod with uniform charge, E outside","2021-22 P2 = Lecture 4 Problem 2 – coaxial cylindrical shells $\\rho_{s1},\\rho_{s2}$: E everywhere, plot $|E|(r)$, condition for $E=0$ outside","2024 MCQ 2 – concentric charged cylindrical sheets, flux density inside","Lecture 4 – infinite line charge"],
  steps:["Coaxial Gaussian cylinder of length $L$: $E\\,2\\pi rL=Q_{enc}/\\epsilon_0$.","Surface charge $\\rho_s$ at radius $a$: $\\lambda=2\\pi a\\rho_s$ ⇒ $E=\\rho_sa/(\\epsilon_0r)$.","Inside all shells ⇒ $E=0$. Outside ($E=0$) ⇒ $\\rho_{s1}a+\\rho_{s2}b=0$.","Sketch $|E|$: jumps by $\\rho_s/\\epsilon_0$ at each shell."],
  find:"cylindrical"
 },
@@ -52,13 +52,13 @@ const QTYPES = [
 },
 {
  id:"q-pot", icon:"🔋", scope:"mid", freq:4, title:"Potential, potential difference & potential energy",
- sources:["2023 Q2(b) – voltage between concentric shells","2022 MCQ 1.2 – negative charge: moves low→high $V$, high→low $U$","2021-22 P1(2) – V at centre of ring of charges (scalar sum)","2023 Q3 – potential at the surface of a non-uniform sphere"],
+ sources:["HW2 Q6 – $\\vec E$ and $\\rho_v$ from $V=2xy^2z^3$","HW2 Q7 – charged disc on its axis: V first, then E","HW2 Q8 – $V_{AB}$, $V_{BC}$, $V_{AC}$ between two charged planes","2023 Q2(b) – voltage between concentric shells","2022 MCQ 1.2 – negative charge: moves low→high $V$, high→low $U$","2021-22 P1(2) – V at centre of ring of charges (scalar sum)","2023 Q3 – potential at the surface of a non-uniform sphere"],
  steps:["$V_{AB}=-\\int_B^A\\vec E\\cdot d\\vec l$ – integrate along a radial path, piecewise.","Point charges: $V=\\sum kQ_i/R_i$ – scalars, signs matter.","Charge sign: positive moves high→low $V$ spontaneously; negative the opposite.","$\\vec E=-\\nabla V$ for the reverse direction."],
  find:"potential"
 },
 {
  id:"q-cap", icon:"⚡", scope:"mid", freq:3, title:"Capacitance & stored energy",
- sources:["2023 Q2(c),(d) – capacitance & energy of spherical shells, $u=\\frac12\\epsilon_0E^2$","2019-20 Q2(c) – energy and energy density of a charged conducting sphere ($C=4\\pi\\epsilon_0R$)","2019-20 Q2(d) – parallel plates: $C$, $Q$, $E$ via Gauss","2021-22 P3 – capacitor charged by steady current: $E(t),V(t),U(t)$","Lecture 5 example – conducting shell with charge Q: V at surface, C, energy (two ways)","Lecture 6 examples – spherical capacitor filled with dielectric; two dielectric layers"],
+ sources:["HW3 Q6 – coaxial capacitor partly filled with $\\epsilon_r=4$","HW2 optional Q3 – cell-membrane spherical capacitor: C and stored energy","2023 Q2(c),(d) – capacitance & energy of spherical shells, $u=\\frac12\\epsilon_0E^2$","2019-20 Q2(c) – energy and energy density of a charged conducting sphere ($C=4\\pi\\epsilon_0R$)","2019-20 Q2(d) – parallel plates: $C$, $Q$, $E$ via Gauss","2021-22 P3 – capacitor charged by steady current: $E(t),V(t),U(t)$","Lecture 5 example – conducting shell with charge Q: V at surface, C, energy (two ways)","Lecture 6 examples – spherical capacitor filled with dielectric; two dielectric layers"],
  steps:["Get $E$ by Gauss ⇒ $V=-\\int E\\,dl$ ⇒ $C=Q/V$.","Energy two ways: $\\frac12CV^2$ or $\\int\\frac12\\epsilon_0E^2dV$ — they must agree (use as check).","Energy density at a surface: $u=\\frac12\\epsilon_0(\\sigma/\\epsilon_0)^2$ (just outside).","Charging by current $I$: $Q=It$, $E=Q/(\\epsilon_0A)$, $U=\\frac{Q^2}{2C}$."],
  find:"capacitor"
 },
@@ -82,31 +82,37 @@ const QTYPES = [
 },
 {
  id:"q-qfromE", icon:"🔍", scope:"mid", freq:2, title:"Find the charge from a given field",
- sources:["Lecture 4 Problem 3 – total charge in a 4 m cube from a z-directed $\\vec E$","Lecture 4 example – approximate charge in a $10^{-9}$ m³ volume at the origin","Lecture 4/5 – “two types of problems”: E from charges, and charges from E"],
+ sources:["HW2 Q3 – cube $1<x,y,z<1.2$: flux vs the $\\nabla\\cdot\\vec E$ estimate","HW2 Q4 – $\\rho_v$ everywhere from a piecewise radial $\\vec E$, then total Q","Lecture 4 Problem 3 – total charge in a 4 m cube from a z-directed $\\vec E$","Lecture 4 example – approximate charge in a $10^{-9}$ m³ volume at the origin","Lecture 4/5 – “two types of problems”: E from charges, and charges from E"],
  steps:["Integral route: $Q=\\epsilon_0\\oint\\vec E\\cdot d\\vec S$, adding only the faces the field crosses (watch the outward-normal signs).","Differential route: $\\rho=\\epsilon_0\\nabla\\cdot\\vec E$, then $Q=\\int\\rho\\,dV$.","Tiny volume: $Q\\approx(\\nabla\\cdot\\vec D)\\,\\Delta v$ evaluated at that point.","Both routes must give the same Q (divergence theorem), so use one to check the other."],
  find:"charge from a given field"
 },
 {
  id:"q-work", icon:"🛤️", scope:"mid", freq:2, title:"Work along a path & potential from graphs",
- sources:["Lecture 5 example – work carrying 2 C from B(1,0) to A(0.8,0.6) along a line, an L-path and an arc (all equal)","Lecture 5 example – sketch $E(x)$ from a $V(x)$ plot; where is the charge?","Lecture 5 – equipotential surfaces, potential landscape","2022 MCQ 1.2 – which way a negative charge moves"],
+ sources:["HW2 Q5 – work carrying 2 μC along a parabola, a hyperbola and a line (all equal)","Lecture 5 example – work carrying 2 C from B(1,0) to A(0.8,0.6) along a line, an L-path and an arc (all equal)","Lecture 5 example – sketch $E(x)$ from a $V(x)$ plot; where is the charge?","Lecture 5 – equipotential surfaces, potential landscape","2022 MCQ 1.2 – which way a negative charge moves"],
  steps:["Write $\\vec E\\cdot d\\vec l=E_xdx+E_ydy$; on each path segment substitute the path equation (e.g. $y=0.6$, $dy=0$).","Electrostatic field ⇒ path-independent, so pick the simplest path to check.","$E_x=-dV/dx$: draw slopes. A corner in $V$ ⇒ sheet of charge with $\\sigma=\\epsilon_0\\Delta E$.","$W_{ext}=q(V_A-V_B)$; field lines are perpendicular to equipotentials."],
  find:"path"
 },
 {
  id:"q-img", icon:"🪞", scope:"mid", freq:1, title:"Method of images & conductors",
- sources:["Lecture 6 example – line charge 30 nC/m, 3 m above earth: E and σ on the ground 2 m from the base","Lecture 6 – electrostatic induction, Faraday cage, equivalent sources","2024 B2 – conducting plates (see Infinite sheets card)"],
+ sources:["HW3 Q1 – two point charges near the grounded plane $x=0$: $\\rho_s$ on the plane","Lecture 6 example – line charge 30 nC/m, 3 m above earth: E and σ on the ground 2 m from the base","Lecture 6 – electrostatic induction, Faraday cage, equivalent sources","2024 B2 – conducting plates (see Infinite sheets card)"],
  steps:["Replace the grounded plane by an image charge of opposite sign mirrored below it.","Add the fields of the real and image charges. On the plane only the normal part survives.","Surface charge: $\\sigma=\\epsilon_0E_n$ (negative under a positive charge).","Answers are valid only on the real side of the plane."],
  find:"images"
 },
 {
  id:"q-capmod", icon:"🔧", scope:"mid", freq:2, title:"Changing a capacitor (slab, dielectric, battery on/off)",
- sources:["Lecture 6 example – conducting slab of thickness 0.6d inserted (isolated): C × 2.5, energy × 0.4","Lecture 6 – dielectric inserted with battery connected (V fixed) vs disconnected (Q fixed)","Lecture 6 – two dielectric layers parallel to the plates; Teflon slab in a field (boundary conditions)"],
+ sources:["HW3 Q7 – two-layer parallel-plate capacitor ($\\epsilon_r=2$ and 6): C, E, D in each layer","Lecture 6 example – conducting slab of thickness 0.6d inserted (isolated): C × 2.5, energy × 0.4","Lecture 6 – dielectric inserted with battery connected (V fixed) vs disconnected (Q fixed)","Lecture 6 – two dielectric layers parallel to the plates; Teflon slab in a field (boundary conditions)"],
  steps:["First decide what is fixed: isolated ⇒ Q fixed; battery connected ⇒ V fixed.","Find the new C (metal slab: $\\epsilon_0A/(d-t)$; dielectric: ×$\\epsilon_r$; layers: series).","Q fixed: $V=Q/C$, $W=Q^2/2C$. V fixed: $Q=CV$, $W=\\frac12CV^2$.","In layers $D$ is the same everywhere, so $E_i=D/\\epsilon_i$."],
  find:"capacitor"
 },
 {
+ id:"q-bc", icon:"🧱", scope:"mid", freq:2, title:"Dielectric boundary conditions & refraction",
+ sources:["HW3 Q4 – three dielectric slabs ($\\epsilon_r=3,5,7$): angle of $\\vec E$ in each layer","HW3 Q5 – free space / $\\epsilon_r=4$ interface: $\\vec E_2$, $\\vec D_2$ and the angles from the normal","Lecture 6 slide 34 – given $\\vec E_1$, find $\\vec E_2$, $\\theta_1$ and $\\theta_2$","Lecture 6 slides 35–36 – Teflon slab in a uniform field: D, E and P everywhere","Hayt 5.31 – interface $x=0$ between $\\epsilon_{r1}=3$ and $\\epsilon_{r2}=5$"],
+ steps:["Find the interface normal $\\hat n$ and split $\\vec E_1$ into normal and tangential parts.","Tangential: copy across, $E_{2t}=E_{1t}$.","Normal: $D_{2n}=D_{1n}-\\rho_s$; with no free charge $E_{2n}=\\frac{\\epsilon_1}{\\epsilon_2}E_{1n}$.","Recombine. Angles from the normal obey $\\frac{\\tan\\theta_1}{\\tan\\theta_2}=\\frac{\\epsilon_1}{\\epsilon_2}$.","Then $\\vec D=\\epsilon\\vec E$ and $\\vec P=\\vec D-\\epsilon_0\\vec E=\\epsilon_0(\\epsilon_r-1)\\vec E$."],
+ find:"boundary"
+},
+{
  id:"q-res", icon:"🔌", scope:"mid", freq:1, title:"Current, current density & resistance (Lecture 6e)",
- sources:["Lecture 6e slides 25–26 – copper conductor (1.524 cm diameter, 365.76 m, 50 A, $\\sigma=5.8\\times10^7$ S/m): find R, J and the voltage","Lecture 6e slides 18–24 – $I=dQ/dt$, $J=I/A$, $J=\\rho v$, $\\vec v=-\\mu\\vec E$, Ohm's law","Hayt 5.10, 5.12, 5.13, 5.14 – composite wires, radial flow between spheres, hollow tube, $E$ from $J$","No past-paper question yet: new this year, so expect something close to the slide example"],
+ sources:["HW3 Q2 – total and average current from $\\vec J=J_0\\frac{\\rho}{a}\\hat z$","HW3 Q3 – voltage drop along a 100 m wire from $J$ and $\\sigma$","Lecture 6e slides 25–26 – copper conductor (1.524 cm diameter, 365.76 m, 50 A, $\\sigma=5.8\\times10^7$ S/m): find R, J and the voltage","Lecture 6e slides 18–24 – $I=dQ/dt$, $J=I/A$, $J=\\rho v$, $\\vec v=-\\mu\\vec E$, Ohm's law","Hayt 5.10, 5.12, 5.13, 5.14 – composite wires, radial flow between spheres, hollow tube, $E$ from $J$","No past-paper question yet: new this year, so expect something close to the slide example"],
  steps:["Cross-section first: $A=\\pi r^2$ (use the radius, not the diameter). Annulus: $\\pi(r_{out}^2-r_{in}^2)$.","$R=l/(\\sigma A)$, $J=I/A$, $V=IR$ (or $V=El$ with $E=J/\\sigma$). Check units: S/m, A/m², V.","Different materials carrying the same voltage are in parallel: add $\\sigma_iA_i$, then $E=I/\\sum\\sigma_iA_i$ is the same in every layer.","Radial flow (coax, spheres): $J=I/(\\text{area at }r)$, $E=J/\\sigma(r)$, then integrate $E$ for $V$ and divide by $I$ for $R$.","Electrons: $\\vec v$ is opposite $\\vec E$, but conventional current follows the positive charge, so $\\vec J\\parallel\\vec E$."],
  find:"resistance"
 },
@@ -146,6 +152,10 @@ const QTYPES = [
 const PAPERS = [
  {name:"Lecture 6e (22 Oct)", note:"Newest slides. Midterm covers Lectures 1–6 (so 6e), not Lecture 7", items:[
    ["Slide 2","Midterm Thu 29 Oct, in class. One A4 sheet, handwritten, one side. Standard calculator."],["3–5","Conductor summary, Gauss in dielectrics, boundary-condition table"],["6","Image theory"],["8–15","Capacitors: parallel plate, dielectric, battery connected vs disconnected, 2-layer, spherical"],["16","Circuit elements: dv = R di, dq = C dv"],["17–24","Resistors: current, J, J = ρv, mobility, Ohm's law"],["25–26","Copper conductor example: R, J, V"]]},
+ {name:"HW 3 (Fall 2026, due 27 Oct)", note:"Lecture 6/6e – conductors, current, dielectrics, capacitors", items:[
+   ["Q1","Image method: two charges near a grounded plane"],["Q2","Total current from J = J₀ρ/a"],["Q3","Ohm's law in a wire"],["Q4","Three dielectric slabs: field angles"],["Q5","Free space / dielectric interface: E₂, D₂, angles"],["Q6","Coaxial capacitor, partly filled"],["Q7","Two-layer parallel-plate capacitor"],["Opt 1–5","Capacitors, spherical layers, σ(z), conductor surface"]]},
+ {name:"HW 2 (Fall 2026)", note:"Lectures 4–5 – Gauss, work and potential", items:[
+   ["Q1–2","Gauss (integral): coaxial shells, ρ = 50 r e^(−r)"],["Q3–4","Gauss (differential): cube flux, ρ from E"],["Q5","Work along three paths"],["Q6","E and ρ from V"],["Q7","Disc: V on axis, then E"],["Q8","V between two charged planes"],["Opt","Gauss Q1–5, potential Q1–3"]]},
  {name:"HW 1 (Fall 2026)", note:"This year – tells you the lecturer's style", items:[
    ["Q1–2","Vector geometry / unit vectors"],["Q3","Field of point charges (qualitative)"],["Q4","E from 2 charges, find E=0"],["Q5","Net force – cube"],["Q6","Charge from field"],["Q7","Dipole/bisector field maximum"],["Q8","Linear quadrupole"],["Opt 9","Coplanar vectors"],["Opt 10–12","Triangle, hydrogen atom, square equilibrium"]]},
  {name:"Final Dec 2024", note:"Closest in style to your lecturer", items:[
