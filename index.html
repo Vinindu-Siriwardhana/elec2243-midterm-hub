@@ -43,7 +43,7 @@ body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-a
 .toolbar{position:sticky;top:0;z-index:20;margin-top:-30px}
 .toolbar .box{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:10px 12px}
 .tabs{display:flex;gap:4px;background:var(--bg);border-radius:10px;padding:3px;width:max-content;max-width:100%;overflow-x:auto}
-.tab{border:0;background:none;color:var(--muted);font:600 14px inherit;padding:7px 14px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.tab{border:0;background:none;color:var(--muted);font:600 14px inherit;padding:7px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;text-decoration:none}
 .tab.on{background:var(--card);color:var(--a1);box-shadow:0 1px 3px rgba(0,0,0,.12)}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
 input[type=search]{flex:1 1 220px;padding:9px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font:15px inherit;outline:none}
@@ -195,6 +195,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
     <button class="tab" data-v="plan">✅ Study plan</button>
     <button class="tab" data-v="practice">🧠 Practice</button>
     <button class="tab" data-v="assign">📝 Assignments</button>
+    <a class="tab" href="cheatsheet.html" target="_blank" rel="noopener">🗒 A4 cheat sheet</a>
   </div>
   <div class="row">
     <input id="q" type="search" placeholder="Search equations, topics, years (e.g. gauss, 2023, HW1)…">
@@ -331,7 +332,7 @@ function setView(v){
 function init(){
   build(); render(); apply();
   $('#q').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();apply()});
-  $('#tabs').addEventListener('click',e=>{const t=e.target.closest('.tab');if(t)setView(t.dataset.v)});
+  $('#tabs').addEventListener('click',e=>{const t=e.target.closest('.tab');if(t&&t.dataset.v)setView(t.dataset.v)});
   [['f-exam',v=>fExam=v],['f-todo',v=>fTodo=v],['f-mid',v=>fMid=v]].forEach(([id,fn])=>$('#'+id).addEventListener('click',e=>{e.target.classList.toggle('on');fn(e.target.classList.contains('on'));apply()}));
   $('#eqs').addEventListener('change',e=>{if(e.target.type==='checkbox'){const id=e.target.closest('.card').dataset.id;done[id]=e.target.checked;store.set('done',done);apply();}});
   const onPlanTick=e=>{const id=e.target.dataset.pid;if(!id)return;planDone[id]=e.target.checked;store.set('plan',planDone);
