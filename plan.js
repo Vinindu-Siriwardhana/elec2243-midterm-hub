@@ -2,10 +2,10 @@
 // keyed by pid (default groupId:index). An explicit pid keeps a trimmed item linked to its Practice card.
 const PLAN = [
  {id:"days", title:"Schedule: Sat 24 → Thu 29 Oct", icon:"📅", c:["#f59e0b","#f97316"], note:"Midterm Thu 29 Oct in class: Lectures 1–6 including 6e (resistors). Lecture 7 is not included. One A4 sheet, handwritten, one side; standard calculator. Add to the A4 sheet at the end of every day, not just Wednesday.", items:[
-   ["Sat 24","Vectors and coordinates (Lecture 0): cylindrical and spherical unit vectors, dL / dS / dV in each system, gradient and divergence. Then point charges and continuous charge: HW1, 2e/3e slides, Hayt 1.19, 1.29, 2.19, 2.23, 2.25, 2019 Q1, 2024 B1, 2021-22 P1. A4: coordinate elements, Coulomb, E of line, ring, disc and sheet.","days:sat24"],
-   ["Sun 25","Gauss and divergence: HW2 Q1–Q4, 4e slides, Hayt 3.12, 3.14, 3.25, 2021-22 P2, 2022 P2, 2024 MCQ 1–3. A4: Gauss surfaces for sphere, cylinder and plane; ∇·D in all three systems.","days:sun25"],
-   ["Mon 26","Potential and energy: HW2 Q5–Q8, 5e slides, Hayt 4.16, 4.24, 4.35, 2022 P3, 2024 B6, 2019 Q2. A4: V of standard shapes, E = −∇V, dipole, W = ½∫D·E dv, C = Q/V.","days:mon26"],
-   ["Tue 27","Conductors, images, dielectrics, capacitors, resistors: HW3 Q1–Q7, Lecture 6 + 6e examples, Hayt 5.31, 5.44, 5.10. Submit Homework 3 by midnight. A4: boundary conditions, image rules, C of plate / coax / sphere, J = σE, R = l/σA.","days:tue27"],
+   ["Sat 24","Vectors and coordinates (Lecture 0): cylindrical and spherical unit vectors, dL / dS / dV in each system, gradient and divergence. Then point charges and continuous charge: HW1, 2e/3e slides, Hayt 1.19, 1.29, 2.19, 2.23, 2.25, 2019 Q1, 2019 Q6(a), 2024 B1, 2021-22 P1, 2023 MCQ 1.1, 1.2, 1.5. A4: coordinate elements, Coulomb, E of line, ring, disc and sheet.","days:sat24"],
+   ["Sun 25","Gauss and divergence: HW2 Q1–Q4, 4e slides, Hayt 3.12, 3.14, 3.25, 2021-22 P2, 2022 P2, 2022 MCQ 1.1, 2019 Q5(b), 2024 MCQ 1–3. A4: Gauss surfaces for sphere, cylinder and plane; ∇·D in all three systems.","days:sun25"],
+   ["Mon 26","Potential and energy: HW2 Q5–Q8, 5e slides, Hayt 4.16, 4.24, 4.35, 2022 P3, 2022 MCQ 1.2, 2024 B6, 2019 Q2. A4: V of standard shapes, E = −∇V, dipole, W = ½∫D·E dv, C = Q/V.","days:mon26"],
+   ["Tue 27","Conductors, images, dielectrics, capacitors, resistors: HW3 Q1–Q7, Lecture 6 + 6e examples, Hayt 5.31, 5.44, 5.10, 2021-22 P3. Submit Homework 3 by midnight. A4: boundary conditions, image rules, C of plate / coax / sphere, J = σE, R = l/σA.","days:tue27"],
    ["Wed 28","Timed mock (~90 min), all unseen: 2023 Q2 + Q3, 2024 B2, Hayt 5.20 (image), Hayt 5.36 (dielectric, source removed), Hayt 5.12 (resistance). Mark it, redo mistakes, then copy out the final A4 sheet.","days:wed28"],
    ["Thu 29","Midterm. Bring calculator, A4 sheet, ID.","days:thu29"]]},
  {id:"hw", title:"Tier 1 · Homework 1", icon:"📝", c:["#6366f1","#8b5cf6"], note:"Redo without looking at your submission. Q5 and Q8 are the hardest.", items:[
@@ -18,10 +18,10 @@ const PLAN = [
  {id:"a3", title:"Tier 1 · Homework 3", icon:"3️⃣", c:["#f59e0b","#f97316"], note:"Due Tue 27 Oct. Worked solutions are in the Assignments tab; ticks stay in sync.", items:[
    ["Q1","Image method: two charges near a grounded plane"],["Q2","Total current from J = J₀ρ/a"],["Q3","Ohm's law in a wire"],["Q4","Three dielectric slabs: boundary conditions"],
    ["Q5","Free space / dielectric interface"],["Q6","Coaxial capacitor"],["Q7","Two-layer parallel-plate capacitor"]]},
- {id:"pp", title:"Tier 1 · Past-paper questions in scope", icon:"📄", c:["#06b6d4","#3b82f6"], note:"All five papers are finals, so only these parts are midterm material. Keep 2023 Q2, 2023 Q3 and 2024 B2 unseen for Wednesday's mock.", items:[
+ {id:"pp", title:"Tier 1 · Past-paper questions in scope", icon:"📄", c:["#06b6d4","#3b82f6"], note:"All five papers are finals, so these are every part in midterm scope (Lectures 0–6e), each with the full question and a full worked answer. Keep 2023 Q2, 2023 Q3 and 2024 B2 unseen for Wednesday's mock.", items:[
    ["2023 Q2","Concentric shells: E, ΔV, C, U — the most typical midterm question"],
    ["2023 Q3","Sphere with ρ = αr: E in/out, V at the surface"],
-   ["2023 MCQ 1.2, 1.5","Force scaling, vector quantities"],
+   ["2023 MCQ 1.1, 1.2, 1.5","Maxwell's equations, force scaling, vector quantities"],
    ["2024 B2","Parallel conducting plates: σ on each face, grounding (a)–(d)"],
    ["2024 B1","E at P from +5 nC and −45 nC"],
    ["2024 MCQ 1–3","Bisector field, cylindrical sheets, vector identity"],
@@ -32,7 +32,10 @@ const PLAN = [
    ["2021-22 P1","11 charges on a circle: E and V at the centre"],
    ["2021-22 P2","Coaxial cylindrical shells"],
    ["2019 Q1","Coulomb forces on an axis / at 60°"],
-   ["2019 Q2","Dipole torque, flux, sphere energy, parallel-plate C"]]},
+   ["2019 Q2","Dipole torque, flux, sphere energy, parallel-plate C"],
+   ["2021-22 P3","Capacitor charged by a steady current: E(t), V(t), U(t) (B(t) is Lecture 7+)"],
+   ["2019 Q5(b)","Slab with ρ = 10⁻⁸ cos z: E from Poisson's equation"],
+   ["2019 Q6(a)","Curl of a vector field at the origin"]]},
  {id:"sl", title:"Tier 1 · Lecture example slides", icon:"🖥", c:["#10b981","#34d399"], note:"Rework each from a blank page before checking the slide.", items:[
    ["2e A1–A2","Dipole on the bisector; far-field limit"],
    ["2e B2–B4","Square, 8 charges on a circle, ring of charge"],
