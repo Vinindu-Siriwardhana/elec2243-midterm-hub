@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ELEC2243 Midterm Hub</title>
+<title>ELEC2243 Final Exam Hub</title>
 <link rel="stylesheet" href="katex/katex.min.css">
 <script defer src="katex/katex.min.js"></script>
 <script defer src="katex/auto-render.min.js"></script>
@@ -175,8 +175,8 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
 </head>
 <body>
 <div class="hero"><div class="wrap">
-  <h1>ELEC2243 Midterm Hub</h1>
-  <p>Every equation, where it shows up, and the question types from Homework 1–3 and five past papers — in one place.</p>
+  <h1>ELEC2243 Final Exam Hub</h1>
+  <p>Every equation, where it shows up, and the question types from Homework 1–6 and five past papers, plus every past paper in full — in one place.</p>
   <div class="stats">
     <div class="stat"><b id="s-eq">0</b><span>equations</span></div>
     <div class="stat"><b id="s-q">0</b><span>question types</span></div>
@@ -184,7 +184,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
   </div>
   <div class="prog"><i id="bar"></i></div>
   <div class="eq">∇·E = ρ/ε₀ &nbsp;&nbsp; ∇×E = 0 &nbsp;&nbsp; E = −∇V</div>
-  <p style="margin:10px 0 0;font-size:14px">📅 <b>Midterm: Thu 29 Oct, in class.</b> Covers Lectures 1–6 including the 6e resistors/current slides; <b>Lecture 7 (magnetic field) is not included</b>. You may bring ONE A4 sheet, handwritten, <b>single side</b>, and a standard calculator. In Question types, use “Midterm scope only” to focus.</p>
+  <p style="margin:10px 0 0;font-size:14px">📅 <b>Final exam: the whole course</b> — electrostatics (Lectures 0–6e) and magnetism &amp; EM (Lectures 7–10e). Past finals: 3 hours, ONE A4 sheet, handwritten, <b>both sides</b>, approved calculator. The <b>Past papers</b> tab has all five papers in full with worked answers; use them as timed mocks.</p>
 </div></div>
 
 <div class="toolbar"><div class="wrap"><div class="box">
@@ -195,13 +195,14 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
     <button class="tab" data-v="plan">✅ Study plan</button>
     <button class="tab" data-v="practice">🧠 Practice</button>
     <button class="tab" data-v="assign">📝 Assignments</button>
+    <button class="tab" data-v="past">📜 Past papers</button>
     <a class="tab" href="cheatsheet.html" target="_blank" rel="noopener">🗒 A4 cheat sheet</a>
   </div>
   <div class="row">
     <input id="q" type="search" placeholder="Search equations, topics, years (e.g. gauss, 2023, HW1)…">
     <button class="chip" id="f-exam" data-eqonly>Past-paper hits</button>
     <button class="chip" id="f-todo" data-eqonly>Not mastered</button>
-    <button class="chip" id="f-mid" data-qtonly>Midterm scope only</button>
+    <button class="chip" id="f-mid" data-qtonly>Magnetism &amp; EM only</button>
     <button class="chip" id="quiz" data-eqonly>Quiz mode</button>
     <button class="chip" id="f-undone" data-pronly>Not done yet</button>
     <button class="chip" id="revall" data-pronly>Show all answers</button>
@@ -219,11 +220,12 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
   </div>
   <div class="view" id="v-qt"><div id="qts"></div></div>
   <div class="view" id="v-papers"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#06b6d4;--c2:#3b82f6">📄</span>What each paper asked</h2><p class="blurb">Click a row's topic words in the search bar of the other tabs to find the matching equations.</p><div class="grid" id="papers"></div></div>
-  <div class="view" id="v-plan"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#16a34a;--c2:#10b981">✅</span>Midterm study plan <span class="cnt" id="plan-cnt" style="margin-left:auto;font-size:14px;color:var(--muted)"></span></h2><p class="blurb">Tier 1 first, then Tier 2 textbook problems. Tick each one off as you finish it.</p><div class="grid" id="plan"></div></div>
-  <div class="view" id="v-practice"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#ec4899;--c2:#8b5cf6">🧠</span>Practice questions</h2><p class="blurb">The study-plan questions, plus the optional Hayt problems that were trimmed from the plan. Homework 2 and 3 are in the Assignments tab. Try each on paper first, then press “Reveal answer”. Ticking “done” here also ticks it in the Study plan. Hayt problem numbers are those of the 6th-edition PDF in your folder (the slides quote 8th-edition section numbers, so they differ); check against your PDF.</p><div id="practice"></div></div>
-  <div class="view" id="v-assign"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#f59e0b;--c2:#ec4899">📝</span>Assignments</h2><p class="blurb">Homework 1, 2 and 3 with their diagrams and worked answers, including each optional practice set. Try each question first, then press “Reveal answer”.</p><div id="assign"></div></div>
+  <div class="view" id="v-plan"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#16a34a;--c2:#10b981">✅</span>Final exam study plan <span class="cnt" id="plan-cnt" style="margin-left:auto;font-size:14px;color:var(--muted)"></span></h2><p class="blurb">Follow the 14-day schedule. Tier 1 is the core (homework, past papers, lecture examples); Tier 2 is electrostatics refresh; Tier 3 is optional textbook practice. Tick each one off as you finish it.</p><div class="grid" id="plan"></div></div>
+  <div class="view" id="v-practice"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#ec4899;--c2:#8b5cf6">🧠</span>Practice questions</h2><p class="blurb">Short-form practice: Homework 1, the electrostatics past-paper questions, lecture examples and Hayt problems. Homework 2–6 are in the Assignments tab and the full past papers in the Past papers tab. Try each on paper first, then press “Reveal answer”. Ticking “done” here also ticks it in the Study plan. Hayt problem numbers are those of the 6th-edition PDF in your folder (the slides quote 8th-edition section numbers, so they differ); check against your PDF.</p><div id="practice"></div></div>
+  <div class="view" id="v-assign"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#f59e0b;--c2:#ec4899">📝</span>Assignments</h2><p class="blurb">Homework 1–6 with their diagrams and worked answers, including each optional practice set. Try each question first, then press “Reveal answer”.</p><div id="assign"></div></div>
+  <div class="view" id="v-past"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#ef4444;--c2:#8b5cf6">📜</span>Past papers, complete</h2><p class="blurb">Every question of every paper, in exam order, with the full wording and a full worked answer. Sit a paper timed first, then press “Reveal answer”. Ticks are shared with the Study plan and Practice tabs.</p><div id="past"></div></div>
   <div class="empty hidden" id="empty">No matches — try a different search.</div>
-  <p class="blurb" style="margin-left:0;margin-top:30px">Compiled from Lectures 0–6 (including 6e), Homework 1–3 and the 2019–2024 past papers. Worked answers marked in the notes are quick checks, so verify against your own working. Ticks are saved in this browser.</p>
+  <p class="blurb" style="margin-left:0;margin-top:30px">Compiled from Lectures 0–10e, Homework 1–6 and the 2019–2024 past papers. Worked answers marked in the notes are quick checks, so verify against your own working. Ticks are saved in this browser.</p>
 </main>
 
 <script src="data.js"></script>
@@ -233,6 +235,8 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
 <script src="plan.js"></script>
 <script src="practice.js"></script>
 <script src="assign.js"></script>
+<script src="assign2.js"></script>
+<script src="papers.js"></script>
 <script>function safeSvg(id){try{return DIAG[id].svg()}catch(e){console.warn('diagram',id,e);return ''}}</script>
 <script>
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -259,8 +263,8 @@ function build(){
     </div></section>`}).join('');
   $('#qts').innerHTML = ['mid','late'].map(sc=>{
     const list=QTYPES.filter(q=>q.scope===sc);
-    return `<div class="qgroup" data-scope="${sc}"><h2 class="sec"><span class="num" style="--c1:${sc==='mid'?'#6366f1':'#8b5cf6'};--c2:${sc==='mid'?'#06b6d4':'#ec4899'}">${sc==='mid'?'⚡':'🧲'}</span>${sc==='mid'?'Electrostatics, Lectures 1–6 (midterm scope)':'Later topics (show up on finals)'}</h2>
-    <p class="blurb">${sc==='mid'?'Question patterns from Homework 1–3, the lecture examples and the electrostatics parts of every past paper. Dots = how often it appears.':'Not in the midterm (Lecture 7 onward), but these repeat almost verbatim on finals.'}</p><div class="grid">
+    return `<div class="qgroup" data-scope="${sc}"><h2 class="sec"><span class="num" style="--c1:${sc==='mid'?'#6366f1':'#8b5cf6'};--c2:${sc==='mid'?'#06b6d4':'#ec4899'}">${sc==='mid'?'⚡':'🧲'}</span>${sc==='mid'?'Electrostatics · Lectures 1–6e':'Magnetism &amp; EM · Lectures 7–10e'}</h2>
+    <p class="blurb">${sc==='mid'?'Question patterns from Homework 1–3, the lecture examples and the electrostatics parts of every past paper. Dots = how often it appears.':'From Homework 4–6, the lecture examples and every past final. The Poynting capacitor, plane-wave and monopole questions repeat almost word for word.'}</p><div class="grid">
     ${list.map(q=>`<div class="card qt ${q.scope}" data-search="${(q.title+' '+q.sources.join(' ')+' '+q.steps.join(' ')+' '+q.find).toLowerCase().replace(/"/g,'')}">
       <div class="top"><div class="name"><span class="ic">${q.icon}</span><h3>${q.title}</h3></div>
       <span class="freq" title="Frequency across papers">${[1,2,3,4,5].map(n=>`<i class="${n<=q.freq?'f':''}"></i>`).join('')}</span></div>
@@ -283,8 +287,9 @@ function build(){
       <button class="chip rev">Reveal answer</button>
       <div class="ans">${M(p.a)}</div></div>`;
   const pqGroups = (groups,showNote) => groups.map(g=>`<div class="pgroup"><h2 class="sec"><span class="num" style="--c1:${g.c[0]};--c2:${g.c[1]}">${g.icon}</span>${g.title}</h2>${showNote&&g.note?`<p class="blurb">${g.note}</p>`:''}<div class="grid">${g.items.map(p=>pqCard(p,g)).join('')}</div></div>`).join('');
-  $('#practice').innerHTML = pqGroups(PLAN.filter(g=>g.id!=='days').map(g=>({...g,items:PRACTICE.filter(p=>p.pid.startsWith(g.id+':'))})).filter(g=>g.items.length));
+  $('#practice').innerHTML = pqGroups(PLAN.filter(g=>g.id!=='fdays').map(g=>({...g,items:PRACTICE.filter(p=>p.pid.startsWith(g.id+':'))})).filter(g=>g.items.length));
   $('#assign').innerHTML = pqGroups(ASSIGN.map(g=>({...g,items:g.items.map(it=>it.ref?PQ[it.ref]:it)})),true);
+  $('#past').innerHTML = pqGroups(PAPERS_FULL.map(g=>({...g,items:g.items.map(it=>it.ref?{...PQ[it.ref],src:it.src}:it)})),true);
   $('#nav').innerHTML = SECTIONS.map(s=>`<a href="#${s.id}">${s.id==='EM'?'Maxwell':'Lec '+s.id.slice(1)}</a>`).join('');
   $('#s-eq').textContent = SECTIONS.reduce((a,s)=>a+s.eqs.length,0);
   $('#s-q').textContent = QTYPES.length;
@@ -305,7 +310,7 @@ function apply(){
   });
   $$('#eqs section').forEach(s=>s.classList.toggle('hidden',!s.querySelector('.card:not(.hidden)')));
   $$('.card.qt').forEach(c=>{
-    const ok=(!query||c.dataset.search.includes(query))&&!(fMid&&c.classList.contains('late'));
+    const ok=(!query||c.dataset.search.includes(query))&&!(fMid&&c.classList.contains('mid'));
     c.classList.toggle('hidden',!ok); if(ok&&view==='qt')n++;});
   $$('.qgroup').forEach(g=>g.classList.toggle('hidden',!g.querySelector('.card:not(.hidden)')));
   $$('#papers .pap').forEach(p=>{const ok=!query||p.dataset.search.includes(query);p.classList.toggle('hidden',!ok);if(ok&&view==='papers')n++;});
@@ -323,7 +328,7 @@ function apply(){
   $('#nav').classList.toggle('hidden',view!=='eqs');
   $$('[data-eqonly]').forEach(b=>b.classList.toggle('hidden',view!=='eqs'));
   $$('[data-qtonly]').forEach(b=>b.classList.toggle('hidden',view!=='qt'));
-  $$('[data-pronly]').forEach(b=>b.classList.toggle('hidden',view!=='practice'&&view!=='assign'));
+  $$('[data-pronly]').forEach(b=>b.classList.toggle('hidden',!['practice','assign','past'].includes(view)));
 }
 function setView(v){
   view=v; $$('.tab').forEach(t=>t.classList.toggle('on',t.dataset.v===v));
@@ -338,7 +343,7 @@ function init(){
   const onPlanTick=e=>{const id=e.target.dataset.pid;if(!id)return;planDone[id]=e.target.checked;store.set('plan',planDone);
     $$(`input[data-pid="${id}"]`).forEach(b=>b.checked=e.target.checked);apply();};
   $('#plan').addEventListener('change',onPlanTick);
-  ['#practice','#assign'].forEach(id=>{
+  ['#practice','#assign','#past'].forEach(id=>{
     $(id).addEventListener('change',onPlanTick);
     $(id).addEventListener('click',e=>{const b=e.target.closest('.rev');if(!b)return;const open=b.closest('.pq').classList.toggle('open');b.textContent=open?'Hide answer':'Reveal answer';});
   });

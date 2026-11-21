@@ -1,5 +1,5 @@
-// Question types seen in Homework 1–3 (HW1–HW3), the lecture examples and the past papers.
-// scope: "mid" = electrostatics (Lectures 0-6, likely midterm) ; "late" = later course content (seen on finals)
+// Question types seen in Homework 1–6, the lecture examples and the past papers.
+// scope: "mid" = electrostatics (Lectures 0–6e) ; "late" = magnetism and EM (Lectures 7–10e). Both are in the final.
 // find = keyword(s) that jump to related equations in the Equations tab
 const QTYPES = [
 {
@@ -117,41 +117,91 @@ const QTYPES = [
  find:"resistance"
 },
 {
+ id:"q-lor", icon:"🌀", scope:"late", freq:2, title:"Charged particles in B: selector, circles, Hall effect",
+ sources:["HW4 Q1 – Ar ions: velocity selector ($v=E/B$), semicircle radius and time, isotope separation","HW4 Q2 – Hall effect in a copper strip: drift speed, $E_H$, $V_H$, which edge is higher","HW4 optional Q1 – electron at 30° to $\\vec B$: helix radius, period, pitch","Lecture 7 slides 27–28 – velocity selector; Hall-effect sign of carriers"],
+ steps:["Write $\\vec F=q(\\vec E+\\vec v\\times\\vec B)$ and do the cross product with unit vectors — the sign of $q$ matters.","Undeflected ⇒ $qE=qvB$ ⇒ $v=E/B$.","Circle: $qvB=mv^2/r$ ⇒ $r=mv/qB$, $T=2\\pi m/qB$ (speed-independent). Helix: only $v_\\perp$ circles.","Hall: $v_d=J/ne$, then $E_H=v_dB$, $V_H=E_Hw$; find which edge the carriers pile up on."],
+ find:"lorentz"
+},
+{
+ id:"q-fw", icon:"🔩", scope:"late", freq:3, title:"Forces and torques on wires and loops",
+ sources:["HW4 Q3 – bent wire A→B→C in uniform B; closing it into a triangle (zero force, zero torque)","HW4 Q4 – three wires on a triangle: force per length on each, total = 0","HW5 Q5 – two parallel wires: force per length and direction","HW4 optional Q2 – rectangular loop next to a long wire (net attraction)","HW4 optional Q4 – torque on a loop, $\\vec\\tau=\\vec\\mu\\times\\vec B$ vs $\\sum\\vec r\\times\\vec F$","HW5 optional Q2 – square loop under a long wire","2022 MCQ 1.3 – parallel wires attract; 2022 MCQ 1.4 – coil in uniform B rotates but does not move","2019-20 Q6(b) – work and power to move a wire in $B=6\\times10^{-4}e^{-0.2x}\\hat a_y$"],
+ steps:["Straight segment, uniform $\\vec B$: $\\vec F=I\\vec L\\times\\vec B$; only the end points matter.","Two long wires: $F/L=\\mu_0I_1I_2/2\\pi d$; parallel attract, antiparallel repel. Add the pair forces as vectors.","Non-uniform field (loop beside a wire): integrate $I\\,d\\vec l\\times\\vec B$ side by side; near side wins.","Loop: $\\vec\\mu=NIA\\hat n$, $\\vec\\tau=\\vec\\mu\\times\\vec B$, net force 0 in a uniform field.","Work to move: $W=-\\int\\vec F_m\\cdot d\\vec l$ (negative if the field pushes the wire along)."],
+ find:"parallel wires"
+},
+{
+ id:"q-bs", icon:"➰", scope:"late", freq:3, title:"Biot–Savart: segments, loops, arcs",
+ sources:["2024 B3 – finite straight conductor, $B$ at P: derive $\\frac{\\mu_0I}{4\\pi r}(\\cos\\theta_1-\\cos\\theta_2)$","HW4 Q5 – rectangle (10 μT) vs the same wire bent into a circle (8.5 μT)","HW4 Q6 – Bohr orbit as a current loop; $B$ at the proton; Bohr magneton","HW4 optional Q5 – two concentric arcs ($\\mu_0I\\phi_0/4\\pi R$ each)","HW5 Q1 – infinite wire with a semicircular bump: $\\mu_0I/4R$","HW5 Q2 – Helmholtz coil: on-axis field and its uniformity","HW4 optional Q3 – Earth as a magnetic dipole","Lecture 7/7e – coil centre and axis, finite wire, current sheet by integration"],
+ steps:["Split the current into pieces; pieces pointing at P ($d\\vec l\\parallel\\hat R$) contribute zero.","Use the known building blocks: segment $\\frac{\\mu_0I}{4\\pi r}(\\cos\\theta_1-\\cos\\theta_2)$, arc $\\frac{\\mu_0I\\phi_0}{4\\pi R}$, loop axis $\\frac{\\mu_0IR^2}{2(R^2+z^2)^{3/2}}$.","Get each direction by the right-hand rule, then add as vectors (opposite senses subtract).","Check limits: long segment → $\\mu_0I/2\\pi r$; full circle → $\\mu_0I/2R$."],
+ find:"biot"
+},
+{
+ id:"q-amp", icon:"⭕", scope:"late", freq:4, title:"Ampère's law: wires, coax, holes, solenoids, sheets",
+ sources:["HW5 Q3 – coaxial cable $a,b,c$: B in all four regions","HW5 Q4 – conductor with an off-centre hole: $B=\\mu_0Jd/2$ at P","HW5 optional Q4 – cylinder $3a$ with a hole $a$: $H$ on a plane and uniform $H$ inside the hole","2022 P4 · 2023 Q4 – parallel planes with $\\pm K_0$: $H=K_0$ between, 0 outside","2021-22 P6 – coax filled with two permeabilities","2019-20 Q3(a) – five-layer solenoid at its centre","Lecture 8 – wire of radius $R$, ideal solenoid, current sheet, slab via $\\nabla\\times\\vec B=\\mu_0\\vec J$"],
+ steps:["Use symmetry to fix the direction of $\\vec B$ (circles round an axis; parallel to a sheet).","Choose a loop on which $B$ is constant or perpendicular to $d\\vec l$; $\\oint\\vec B\\cdot d\\vec l=B\\times$length.","Find $I_{enc}$ region by region (uniform $J$: scale by area).","Holes: superpose $+J$ (solid) and $-J$ (hole) ⇒ uniform $\\frac{\\mu_0}{2}\\vec J\\times\\vec d$."],
+ find:"ampère"
+},
+{
+ id:"q-mbc", icon:"🧱", scope:"late", freq:3, title:"Magnetic materials, boundaries and magnetic circuits",
+ sources:["HW6 Q1 – hysteresis loop: remanence, coercivity, saturation (MCQ)","HW5 Q6 – three media: $\\tan\\theta_4=\\frac{\\mu_3}{\\mu_1}\\tan\\theta_1$, independent of $\\mu_2$","HW5 Q7 – C-core electromagnet with an air gap: $B\\approx\\mu_0Ni/d$","HW5 optional Q1 – slab in a normal field; permanent magnet $H_2=H_1-M_i$","HW5 optional Q3 – refraction of $\\vec H$ at the $xy$-plane","2019-20 Q4 – identify para/ferro/antiferro/ferrimagnets; soft vs hard; Curie point; mmf of a gapped iron ring","2021-22 P6 – coax with two media: $B$ continuous (normal), $H$ jumps","Lecture 9e – angle between $\\vec H_1$ and the normal ($\\mu_{r1}=2$, $\\mu_{r2}=8$)"],
+ steps:["$\\vec B=\\mu_0(\\vec H+\\vec M)=\\mu\\vec H$; Ampère with free current only: $\\oint\\vec H\\cdot d\\vec l=I_{free}$.","Boundary: $B_{1n}=B_{2n}$, $H_{1t}-H_{2t}=J_s$ ⇒ $\\tan\\theta_1/\\tan\\theta_2=\\mu_1/\\mu_2$.","Magnetic circuit: same $\\Phi$ (same $B$ if same area) everywhere; $NI=\\sum H_kl_k$; the air gap needs most of the mmf.","Loop shape: narrow loop = soft (transformers), wide loop = hard (permanent magnets, storage)."],
+ find:"magnetic boundary"
+},
+{
+ id:"q-disp", icon:"🔁", scope:"late", freq:3, title:"Displacement current and the Ampère–Maxwell law",
+ sources:["2021-22 P3 – capacitor charged by steady $I$: $E(t)$, $V(t)$, $B(t)$, $U(t)$","2022 MCQ 1.7 – sense of $\\vec B$ tells whether $Q$ is growing","2024 MCQ 4 – $B$ is produced by conduction and displacement current","HW6 optional Q7 – $\\vec J_d=\\partial\\vec D/\\partial t$; find $b$ from $\\nabla\\times\\vec H=\\vec J_d$","Lecture 9e/10 – wire with a gap; finite wire with charges at the ends"],
+ steps:["$\\oint\\vec B\\cdot d\\vec l=\\mu_0I_{enc}+\\mu_0\\epsilon_0\\,d\\Phi_E/dt$; in a gap there is no conduction current.","Capacitor: $E=Q/\\epsilon_0\\pi R^2$ ⇒ $B(r)=\\mu_0Ir/2\\pi R^2$ inside, $\\mu_0I/2\\pi r$ outside.","$\\vec B$ circulates round $\\partial\\vec E/\\partial t$ by the right-hand rule (same sense as round the wire while charging)."],
+ find:"displacement"
+},
+{
+ id:"q-far", icon:"🔄", scope:"late", freq:4, title:"Faraday's law, EMF, generators",
+ sources:["2021-22 P4 = HW6 Q3 – rotating coil generator: peak current, orientation, power","HW6 Q2 – loop with a resistor in $B=0.2\\cos120\\pi t$: $V_{ab}(t)$, $I(t)$","HW6 optional Q6 – evaluate both sides of Faraday's law around a ring","2019-20 Q3(b) – emf in a small coil from a shrinking solenoid current","2019-20 Q6(c) – rotating square coil: 33.9 V, AC at 25 Hz","2022 MCQ 1.5–1.6 – Lenz direction; rod on rails","Lecture 10 – sliding bar: $\\mathcal E=Blv$, force, power; AC generator"],
+ steps:["$\\mathcal E=-N\\,d\\Phi/dt$ with $\\Phi=\\int\\vec B\\cdot d\\vec A$ (often $BA\\cos\\theta$).","Ask what changes: $B$ (transformer emf), area (sliding bar, $Blv$) or angle (generator, $NBA\\omega\\sin\\omega t$).","Direction from Lenz: the induced current opposes the change in flux.","Circuit: $I=\\mathcal E/R$; power $\\mathcal E^2/R$, averaged: $\\frac{\\mathcal E_0^2}{2R}$."],
+ find:"faraday"
+},
+{
+ id:"q-ind", icon:"🌀", scope:"late", freq:3, title:"Self and mutual inductance",
+ sources:["2023 B1 = HW6 Q4 – two attached solenoids: $L=\\mu_0\\pi n^2\\ell(b^2+15a^2)$","2019-20 Q3(c) – coplanar coils: $M=\\mu_0\\pi N_1N_2R_2^2/2R_1$ (8.9 mH)","HW6 Q5 – wire through a toroid: $V_{emf}=5.5\\sin377t$ V","HW6 optional Q8 – wire and circular loop: $M=\\mu_0(d-\\sqrt{d^2-a^2})$","Lecture 10e – solenoid $L=\\mu_0n^2l\\pi R^2$; energy $\\frac12LI^2$; transformer"],
+ steps:["Assume a current $I$ and find $B$ everywhere (Ampère or Biot–Savart).","Flux linkage: add $N\\Phi$ over every turn (each turn links all the flux inside it).","$L=N\\Phi/I$ or $M=N_2\\Phi_{21}/I_1$; or from energy $L=2W_m/I^2$.","emf $=-L\\,dI/dt$ or $-M\\,dI_1/dt$."],
+ find:"inductance"
+},
+{
+ id:"q-mag", icon:"🧲", scope:"late", freq:4, title:"Parallel planes and coax: B, energy, inductance",
+ sources:["2022 P4 · 2023 Q4 – parallel planes with surface currents $K_0$: energy per length, flux through rectangle, inductance/length","2021-22 P6 – coax with two magnetic media: B, energy/length"],
+ steps:["Ampère with symmetry: planes ⇒ $H=K_0$ between, 0 outside; coax $B=\\mu I/2\\pi r$.","Energy: $W=\\int\\frac{B^2}{2\\mu}dV$ ⇒ $L=2W/I^2$ (matches $L=\\Phi/I$).","Planes: $W=\\frac12\\mu_0K_0^2wd$, $\\Phi=\\mu_0K_0d$, $L'=\\mu_0d/w$."],
+ find:"inductance"
+},
+{
  id:"q-pnt", icon:"🌊", scope:"late", freq:5, title:"Capacitor + Poynting vector",
  sources:["2022 P5 · 2023 Q5 · 2024 B4 – <b>identical question three years in a row</b>","2021-22 P3 – field, potential, B and energy of a charging capacitor"],
- steps:["$E=\\frac{Q}{\\epsilon_0\\pi R^2}$ (axial); $B$ from Ampère with displacement current: $B=\\frac{\\mu_0 I r}{2\\pi R^2}$ (azimuthal).","$\\vec S=\\frac1{\\mu_0}\\vec E\\times\\vec B$ points radially <b>inward</b>.","Integrate over the side area $2\\pi Rh$: $P=\\frac{EBh\\cdot2\\pi R}{\\mu_0}$ = $\\frac{d}{dt}\\left(\\frac12\\epsilon_0E^2\\pi R^2h\\right)$."],
+ steps:["$E=\\frac{Q}{\\epsilon_0\\pi R^2}$ (axial); $B$ from Ampère with displacement current: $B=\\frac{\\mu_0 I r}{2\\pi R^2}$ (azimuthal).","$\\vec S=\\frac1{\\mu_0}\\vec E\\times\\vec B$ points radially <b>inward</b>.","Integrate over the side area $2\\pi Rh$: $P=\\frac{QIh}{\\epsilon_0\\pi R^2}=\\frac{d}{dt}\\left(\\frac12\\epsilon_0E^2\\pi R^2h\\right)$."],
  find:"poynting"
 },
 {
  id:"q-wave", icon:"📡", scope:"late", freq:5, title:"Plane-wave analysis",
- sources:["2022 P6 – $E=3\\cos(2\\pi\\!\\times\\!10^8t-\\frac{2\\pi}{3}x)$: f, λ, direction of propagation, B direction","2021-22 P5 · 2024 MCQ 5 – direction from $B$, full $\\vec E$, time-average energy flux","2024 B5 – wave in ferrite ($\\kappa_m=1000,\\kappa_e=10$): speed, λ, $\\vec B$, λ back in vacuum","2023 Q6 – verify wave equation, find $B$, instantaneous $\\vec S$","2019-20 Q5(a) – H from E and power on a dish"],
- steps:["Read $\\omega$ and $k$ off the argument: $f=\\omega/2\\pi$, $\\lambda=2\\pi/k$, $v=\\omega/k$.","$(kx-\\omega t)$ ⇒ travels $+x$; $(kx+\\omega t)$ ⇒ $-x$.","Direction: $\\vec E\\times\\vec B\\parallel\\vec k$ (fixes the sign of $B$). $B=E/v$.","Medium: $v=c/\\sqrt{\\kappa_m\\kappa_e}$; frequency unchanged when leaving, wavelength changes.","Average intensity: $\\langle S\\rangle=\\frac{E_0^2}{2\\eta}$."],
+ sources:["2022 P6 – $E=3\\cos(2\\pi\\!\\times\\!10^8t-\\frac{2\\pi}{3}x)$: f, λ, direction of propagation, B direction","2021-22 P5 · 2024 MCQ 5 – direction from $B$, full $\\vec E$, time-average energy flux","2024 B5 – wave in ferrite ($\\kappa_m=1000,\\kappa_e=10$): speed, λ, $\\vec B$, λ back in vacuum","2023 Q6 – circular polarisation: verify wave equation, find $B$, instantaneous $\\vec S$","2022 MCQ 1.8 – $\\vec E$ from $\\vec B$","2019-20 Q5(a) – H from E and power on a dish"],
+ steps:["Read $\\omega$ and $k$ off the argument: $f=\\omega/2\\pi$, $\\lambda=2\\pi/k$, $v=\\omega/k$.","$(kx-\\omega t)$ ⇒ travels $+x$; $(kx+\\omega t)$ ⇒ $-x$.","Direction: $\\vec E\\times\\vec B\\parallel\\vec k$ (fixes the sign of $B$). $B=E/v$.","Medium: $v=c/\\sqrt{\\kappa_m\\kappa_e}$; frequency unchanged when leaving, wavelength changes.","Average intensity: $\\langle S\\rangle=\\frac{E_0^2}{2\\eta}=\\frac{E_0B_0}{2\\mu_0}$."],
  find:"wave"
-},
-{
- id:"q-mag", icon:"🧲", scope:"late", freq:4, title:"Magnetic fields, energy & inductance",
- sources:["2022 P4 · 2023 Q4 – parallel planes with surface currents $K_0$: energy per length, flux through rectangle, inductance/length","2021-22 P6 – coax with two magnetic media: B, energy/length","2023 bonus B1 – two coaxial solenoids, self-inductance","2024 B3 – finite wire: B at point P","2019-20 Q3 – solenoid B, mutual inductance, induced emf","2019-20 Q4 – magnetic materials, mmf for an iron ring with air gap"],
- steps:["Ampère with symmetry: planes ⇒ $B=\\mu_0K_0$ between; solenoid $B=\\mu nI$; coax $B=\\mu I/2\\pi r$.","Energy: $U=\\int\\frac{B^2}{2\\mu}dV$ ⇒ $L=2U/I^2$ (matches $L=\\Phi/I$).","Magnetic circuit: mmf $=NI=\\Phi(\\mathcal R_{iron}+\\mathcal R_{gap})$, $H_{iron}L+H_{gap}g$.","Mutual inductance: $M=N_2\\Phi_{21}/I_1$."],
- find:"inductance"
-},
-{
- id:"q-far", icon:"🔄", scope:"late", freq:3, title:"Faraday's law, EMF, generators",
- sources:["2021-22 P4 – rotating coil generator: peak current, torque/power","2019-20 Q3(b) – emf induced in small coil from shrinking solenoid current","2019-20 Q6(b),(c) – moving conductor work/power; rotating square coil, AC frequency","2022 MCQ 1.5-1.7 – Lenz direction, rod on rails, displacement current direction"],
- steps:["$\\mathcal E=-d\\Phi/dt$; $\\Phi=BS\\cos\\omega t$ ⇒ $\\mathcal E=nBS\\omega\\sin\\omega t$.","Peak current $=nBS\\omega/R$ at the coil plane parallel to B (flux zero, $d\\Phi/dt$ max).","Power $=\\mathcal E^2/R$ averaged.","Lenz: induced current opposes the change in flux."],
- find:"faraday"
 },
 {
  id:"q-mono", icon:"🧿", scope:"late", freq:4, title:"Magnetic monopoles in Maxwell's equations (bonus)",
  sources:["2022, 2023 and 2024 bonus – the same question every year"],
- steps:["$\\nabla\\cdot\\vec B=\\rho_m$, $\\nabla\\times\\vec E=-\\partial_t\\vec B-\\vec J_m$ (the other two are unchanged).","Lorentz: $\\vec F=q_e(\\vec E+\\vec v\\times\\vec B)+q_m(\\vec H-\\epsilon_0\\vec v\\times\\vec E)$ (constants depend on convention; use your lecturer's).","Sanity check: duality $\\vec E\\to\\vec H,\\ \\vec H\\to-\\vec E,\\ \\vec D\\to\\vec B,\\ \\vec B\\to-\\vec D$ maps the electric equations onto the magnetic ones."],
+ steps:["$\\nabla\\cdot\\vec B=\\mu_0\\rho_m$ and $\\nabla\\times\\vec E=-\\mu_0\\vec J_m-\\partial\\vec B/\\partial t$; the other two are unchanged.","Lorentz: $\\vec F=q_e(\\vec E+\\vec v\\times\\vec B)+q_m(\\vec B-\\vec v\\times\\vec E/c^2)$.","Justify the minus sign: the divergence of Faraday's law must give $\\nabla\\cdot\\vec J_m+\\partial\\rho_m/\\partial t=0$."],
  find:"maxwell"
 },
 ];
 
 // Paper-by-paper map: where each topic appeared
 const PAPERS = [
- {name:"Lecture 6e (22 Oct)", note:"Newest slides. Midterm covers Lectures 1–6 (so 6e), not Lecture 7", items:[
+ {name:"Lecture 6e (22 Oct)", note:"Last lecture before the midterm: current, resistors, capacitor recap", items:[
    ["Slide 2","Midterm Thu 29 Oct, in class. One A4 sheet, handwritten, one side. Standard calculator."],["3–5","Conductor summary, Gauss in dielectrics, boundary-condition table"],["6","Image theory"],["8–15","Capacitors: parallel plate, dielectric, battery connected vs disconnected, 2-layer, spherical"],["16","Circuit elements: dv = R di, dq = C dv"],["17–24","Resistors: current, J, J = ρv, mobility, Ohm's law"],["25–26","Copper conductor example: R, J, V"]]},
+ {name:"Lectures 7–10e (Oct–Nov)", note:"Everything after the midterm: all of it is in the final", items:[
+   ["7 / 7e","Lorentz force, velocity selector, Hall effect, force on wires, torque μ×B, Biot–Savart (loop, finite wire, current sheet)"],["8 / 8e","Ampère's law, wire of radius R, solenoid, current sheet, curl and Stokes, slab example"],["9 / 9e","Dielectrics recap, magnetisation, para/dia/ferro, hysteresis, H, magnetic boundary conditions, displacement current"],["10 / 10e","Faraday and Lenz, sliding bar, AC generator, mutual and self inductance, energy ½LI², transformer, travelling waves"]]},
+ {name:"HW 6 (due 26 Nov)", note:"Lectures 9–10e – materials, Faraday, inductance", items:[
+   ["Q1","Hysteresis loop MCQ"],["Q2","Loop + resistor in B = 0.2 cos 120πt"],["Q3","AC generator (= May 2022 P4)"],["Q4","Two attached solenoids (= 2023 B1)"],["Q5","Wire through an iron toroid: V_emf"],["Opt 6–8","Faraday around a ring, displacement current, M of wire and loop"]]},
+ {name:"HW 5 (due 19 Nov)", note:"Lectures 7–9 – Biot–Savart, Ampère, magnetic media", items:[
+   ["Q1–2","Semicircle bump; Helmholtz coil"],["Q3–4","Coax by Ampère; conductor with an off-centre hole"],["Q5","Force between parallel wires"],["Q6–7","Three media refraction; C-core electromagnet"],["Opt 1–4","Slab in H, loop under a wire, H refraction, hollow cylinder"]]},
+ {name:"HW 4 (due 10 Nov)", note:"Lecture 7 – magnetic force, torque, Biot–Savart", items:[
+   ["Q1–2","Velocity selector & mass spectrometer; Hall effect"],["Q3–4","Bent wire in uniform B; three wires on a triangle"],["Q5–6","Rectangle vs circle at the centre; Bohr orbit"],["Opt 1–5","Helix, loop by a wire, Earth's dipole, torque on a loop, two arcs"]]},
  {name:"HW 3 (Fall 2026, due 27 Oct)", note:"Lecture 6/6e – conductors, current, dielectrics, capacitors", items:[
    ["Q1","Image method: two charges near a grounded plane"],["Q2","Total current from J = J₀ρ/a"],["Q3","Ohm's law in a wire"],["Q4","Three dielectric slabs: field angles"],["Q5","Free space / dielectric interface: E₂, D₂, angles"],["Q6","Coaxial capacitor, partly filled"],["Q7","Two-layer parallel-plate capacitor"],["Opt 1–5","Capacitors, spherical layers, σ(z), conductor surface"]]},
  {name:"HW 2 (Fall 2026)", note:"Lectures 4–5 – Gauss, work and potential", items:[

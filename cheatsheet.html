@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ELEC2243 Midterm A4 Sheet</title>
+<title>ELEC2243 Final A4 Sheet</title>
 <link rel="stylesheet" href="katex/katex.min.css">
 <script src="katex/katex.min.js"></script>
 <script src="katex/auto-render.min.js"></script>
 <style>
-/* One side of A4. Master copy to hand-copy onto the allowed sheet. Lectures 1–6 (incl. 6e) + HW1–3 only. */
+/* Both sides of one A4 sheet. Master copy to hand-copy onto the allowed sheet. Side 1: Lectures 0–6e; side 2: Lectures 7–10e. */
 @page { size: A4 portrait; margin: 5mm; }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: #fff; color: #111; }
@@ -29,12 +29,13 @@ table.sm { font-size: .88em; }
 .box { border: .2mm solid #555; padding: .4mm .8mm; margin: .5mm 0; break-inside: avoid; }
 .katex { font-size: 1.02em; }
 .katex-display { margin: .2mm 0; }
-@media screen { body { background: #ddd; padding: 6mm 0; } .page { background: #fff; padding: 0; box-shadow: 0 0 4mm #888; } }
+.page + .page { break-before: page; }
+@media screen { body { background: #ddd; padding: 6mm 0; } .page { background: #fff; padding: 0; box-shadow: 0 0 4mm #888; } .page + .page { margin-top: 8mm; } }
 </style>
 </head>
 <body>
 <div class="page" id="sheet">
-<h1>ELEC2243 Midterm · Lectures 1–6 <small>$k=\tfrac1{4\pi\epsilon_0}=8.99\times10^9$ · $\epsilon_0=8.854\times10^{-12}$ F/m · $e=1.602\times10^{-19}$ C · V/m = N/C · J = C·V</small></h1>
+<h1>ELEC2243 Final · side 1 · Electrostatics (Lectures 0–6e) <small>$k=\tfrac1{4\pi\epsilon_0}=8.99\times10^9$ · $\epsilon_0=8.854\times10^{-12}$ F/m · $e=1.602\times10^{-19}$ C · V/m = N/C · J = C·V</small></h1>
 
 <h2>0 · Vectors &amp; coordinates</h2>
 <p>$\vec R_{12}=\vec r_2-\vec r_1$ (source → field pt) · $\hat a=\vec A/|\vec A|$ · $\vec A\cdot\vec B=AB\cos\theta=A_xB_x+A_yB_y+A_zB_z$</p>
@@ -156,6 +157,117 @@ table.sm { font-size: .88em; }
 <li><b>C:</b> assume $\pm Q$ → $D$ (Gauss) → $E$ → $V=-\int E\,dL$ → $C=Q/V$. <b>R:</b> assume $I$ → $J$ → $E$ → $V$ → $R=V/I$.</li>
 <li><b>Work/V:</b> pick the easiest path; $V$ is a scalar (no components). Check sign: $+Q$ moved against $\vec E$ ⇒ $W&gt;0$.</li>
 <li><b>Traps:</b> $\vec R$ points source → P · $\rho$ = radius vs $\rho_v$ = charge · cm/mm/nC/μC · $V(\infty)=0$ not valid for infinite lines/sheets.</li>
+</ul></div>
+</div>
+
+<div class="page" id="sheet2">
+<h1>ELEC2243 Final · side 2 · Magnetism &amp; EM (Lectures 7–10e) <small>$\mu_0=4\pi\times10^{-7}$ H/m · $c=\frac1{\sqrt{\mu_0\epsilon_0}}=3\times10^8$ m/s · $\eta_0=\sqrt{\mu_0/\epsilon_0}\approx377\ \Omega$ · 1 T = N/(A·m) = $10^4$ G · $H$ in A/m</small></h1>
+
+<h2>7 · Magnetic force</h2>
+<p>$\vec F=q(\vec E+\vec v\times\vec B)$ (magnetic part does no work) · selector $qE=qvB$ ⇒ $v=\dfrac EB$</p>
+<p>Circle: $r=\dfrac{mv_\perp}{qB}$, $T=\dfrac{2\pi m}{qB}$ (speed-free) · helix pitch $v_\parallel T$</p>
+<p>Hall: $v_d=\dfrac{J}{ne}$, $E_H=v_dB$, $V_H=E_Hw=\dfrac{IB}{net}$; sign of $V_H$ = sign of carriers</p>
+<p>$d\vec F=I\,d\vec l\times\vec B$ · straight, uniform: $\vec F=I\vec L\times\vec B$ (only end points matter) · closed loop in uniform $B$: $\vec F=0$</p>
+<p>Wires: $\dfrac FL=\dfrac{\mu_0I_1I_2}{2\pi d}$, parallel attract, antiparallel repel</p>
+<p>$\vec\mu=NI\vec A$ (RH rule) · $\vec\tau=\vec\mu\times\vec B$ · $U=-\vec\mu\cdot\vec B$ · uniform $B$: rotates, no translation</p>
+<p>Work to move a wire: $W=-\int\vec F_m\cdot d\vec l$ · $\hat x\times\hat y=\hat z$, $\hat y\times\hat z=\hat x$, $\hat z\times\hat x=\hat y$</p>
+
+<h2>7 · Biot–Savart</h2>
+<p>$d\vec B=\dfrac{\mu_0}{4\pi}\dfrac{I\,d\vec l\times\hat R}{R^2}$ · charge: $\vec B=\dfrac{\mu_0}{4\pi}\dfrac{q\vec v\times\hat r}{r^2}$ · $d\vec l\parallel\hat R$ ⇒ 0</p>
+<table>
+<tr><td>Finite wire</td><td>$\dfrac{\mu_0I}{4\pi r}(\cos\theta_1-\cos\theta_2)\hat\phi$; midplane $\dfrac{\mu_0Il}{2\pi r\sqrt{4r^2+l^2}}$</td></tr>
+<tr><td>Infinite wire</td><td>$\dfrac{\mu_0I}{2\pi r}\hat\phi$</td></tr>
+<tr><td>Loop centre / arc</td><td>$\dfrac{\mu_0I}{2R}$ · $\dfrac{\mu_0I\phi_0}{4\pi R}$ ($\phi_0$ rad; semicircle $\frac{\mu_0I}{4R}$)</td></tr>
+<tr><td>Loop axis</td><td>$\dfrac{\mu_0IR^2}{2(R^2+z^2)^{3/2}}$ (×N); Helmholtz centre $\dfrac{8\mu_0NI}{5\sqrt5R}$</td></tr>
+<tr><td>Dipole far</td><td>$\dfrac{\mu_0\mu}{4\pi R^3}(2\cos\theta\hat R+\sin\theta\hat\theta)$</td></tr>
+<tr><td>Rectangle centre</td><td>sum 4 segments: $\dfrac{2\mu_0I\sqrt{a^2+b^2}}{\pi ab}$</td></tr>
+</table>
+
+<h2>8 · Ampère's law</h2>
+<p>$\oint\vec B\cdot d\vec l=\mu_0I_{enc}$ · $\nabla\times\vec B=\mu_0\vec J$ · $\nabla\cdot\vec B=0$ · Stokes $\oint\vec A\cdot d\vec l=\int(\nabla\times\vec A)\cdot d\vec S$</p>
+<table>
+<tr><td>Wire radius $R$</td><td>$\dfrac{\mu_0Ir}{2\pi R^2}$ in · $\dfrac{\mu_0I}{2\pi r}$ out</td></tr>
+<tr><td>Coax $a,b,c$</td><td>$\frac{\mu_0Ir}{2\pi a^2}$, $\frac{\mu_0I}{2\pi r}$, $\frac{\mu_0I}{2\pi r}\frac{c^2-r^2}{c^2-b^2}$, 0</td></tr>
+<tr><td>Solenoid / toroid</td><td>$\mu_0nI$ ($n=N/L$, 0 out) · $\dfrac{\mu_0NI}{2\pi r}$</td></tr>
+<tr><td>Sheet $\vec K$</td><td>$\vec H=\tfrac12\vec K\times\hat a_n$; slab $K=Jd$, inside $\mu_0Jx$</td></tr>
+<tr><td>Planes $\pm K_0$</td><td>$H=K_0$ between, 0 out; $L'=\mu_0d/w$</td></tr>
+<tr><td>Hole in cylinder</td><td>$+J$ & $-J$: uniform $\tfrac{\mu_0}{2}\vec J\times\vec d$</td></tr>
+</table>
+
+<h2>9 · Magnetic materials</h2>
+<p>$\vec M=\dfrac{\sum\vec\mu}{V}$ · $\vec B=\mu_0(\vec H+\vec M)=\mu\vec H$ · $\mu=\mu_r\mu_0=\mu_0(1+\chi_m)$ · $\oint\vec H\cdot d\vec l=I_{free}$</p>
+<p>dia $\kappa_m<1$ · para $\kappa_m>1$ · ferro $\kappa_m\gg1$: hysteresis — remanence ($M$ at $B_0=0$), coercivity ($M=0$), saturation; above Curie T → para. Soft (narrow loop): transformers · hard: magnets/storage</p>
+<p>Boundary: $B_{1n}=B_{2n}$ · $H_{1t}-H_{2t}=J_s$ · $\dfrac{\tan\theta_1}{\tan\theta_2}=\dfrac{\mu_1}{\mu_2}$ (from normal)</p>
+<p>Circuit: $NI=\sum H_kl_k=\Phi\sum\mathcal R$, $\mathcal R=\dfrac{l}{\mu A}$ · same $B$ in iron &amp; gap · $B_{gap}\approx\dfrac{\mu_0NI}{g}$</p>
+<p class="tip">Field ⟂ interface (coax split along a diameter): same $B$, different $H$.</p>
+
+<h2>10 · Displacement current</h2>
+<p>$\oint\vec B\cdot d\vec l=\mu_0I+\mu_0\epsilon_0\dfrac{d\Phi_E}{dt}$ · $I_d=\epsilon_0\dfrac{d\Phi_E}{dt}$ · $\vec J_d=\dfrac{\partial\vec D}{\partial t}$</p>
+<p>Capacitor ($I$ in): $E=\dfrac{Q}{\epsilon_0\pi R^2}$, $B(r)=\dfrac{\mu_0Ir}{2\pi R^2}$ ($r\le R$), same sense as round the wire</p>
+
+<h2>10 · Faraday &amp; Lenz</h2>
+<p>$\mathcal E=\oint\vec E\cdot d\vec l=-N\dfrac{d\Phi}{dt}$ · $\nabla\times\vec E=-\dfrac{\partial\vec B}{\partial t}$ · $\Phi=\int\vec B\cdot d\vec A=BA\cos\theta$</p>
+<p>Lenz: induced $I$ opposes the change in flux · vary $B$, area or angle</p>
+<p>Bar: $\mathcal E=Blv$, $\vec E_m=\vec v\times\vec B$, $I=\dfrac{Blv}{R}$, $F=IlB$ (opposes), $P=\dfrac{(Blv)^2}{R}$</p>
+<p>Generator: $\mathcal E=NBA\omega\sin\omega t$; $I_{max}=\dfrac{NBA\omega}{R}$ (plane ∥ $B$); $\langle P\rangle=\dfrac{(NBA\omega)^2}{2R}$</p>
+
+<h2>10e · Inductance</h2>
+<p>$M=\dfrac{N_1\Phi_{12}}{I_2}$, $\mathcal E_1=-M\dfrac{dI_2}{dt}$ · $L=\dfrac{N\Phi}{I}=\dfrac{2W_m}{I^2}$, $\mathcal E=-L\dfrac{dI}{dt}$ · $U=\tfrac12LI^2$ · $w_m=\dfrac{B^2}{2\mu}$</p>
+<table>
+<tr><td>Solenoid</td><td>$\mu_0n^2l\pi R^2$</td><td>Coax $L'$</td><td>$\frac{\mu}{2\pi}\ln\frac ba$</td></tr>
+<tr><td>Toroid (rect.)</td><td>$\frac{\mu N^2h}{2\pi}\ln\frac ba$</td><td>Planes $L'$</td><td>$\mu_0d/w$</td></tr>
+<tr><td colspan="4">Two solenoids ($a$: $3n$ inside $b$: $n$): $L=\mu_0\pi n^2l(b^2+15a^2)$ · coplanar coils $M=\dfrac{\mu_0\pi N_1N_2R_2^2}{2R_1}$</td></tr>
+</table>
+<p>Transformer $\dfrac{V_S}{V_P}=\dfrac{N_S}{N_P}$ · inductor: short in DC steady state</p>
+
+<h2>Maxwell's equations</h2>
+<table>
+<tr><th>Law</th><th>Integral</th><th>Differential</th></tr>
+<tr><td>Gauss</td><td>$\oint\vec D\cdot d\vec S=Q_{free}$</td><td>$\nabla\cdot\vec D=\rho_v$</td></tr>
+<tr><td>Gauss $B$</td><td>$\oint\vec B\cdot d\vec S=0$</td><td>$\nabla\cdot\vec B=0$</td></tr>
+<tr><td>Faraday</td><td>$\oint\vec E\cdot d\vec l=-\frac{d}{dt}\int\vec B\cdot d\vec S$</td><td>$\nabla\times\vec E=-\partial_t\vec B$</td></tr>
+<tr><td>Ampère–Maxwell</td><td>$\oint\vec H\cdot d\vec l=I+\frac{d}{dt}\int\vec D\cdot d\vec S$</td><td>$\nabla\times\vec H=\vec J+\partial_t\vec D$</td></tr>
+</table>
+<p>Monopoles: $\nabla\cdot\vec B=\mu_0\rho_m$, $\nabla\times\vec E=-\mu_0\vec J_m-\partial_t\vec B$; $\vec F=q_e(\vec E+\vec v\times\vec B)+q_m(\vec B-\vec v\times\vec E/c^2)$</p>
+
+<h2>EM waves &amp; Poynting</h2>
+<p>$f(kx-\omega t)$ → $+x$; $f(kx+\omega t)$ → $-x$ · $k=\dfrac{2\pi}{\lambda}$, $\omega=2\pi f$, $v=\dfrac\omega k=\lambda f$</p>
+<p>$v=\dfrac1{\sqrt{\mu\epsilon}}=\dfrac{c}{\sqrt{\kappa_m\kappa_e}}$ · $E_0=vB_0$ · $\eta=\sqrt{\mu/\epsilon}$, $H_0=E_0/\eta$ · new medium: $f$ same, $\lambda$ changes</p>
+<p>$\vec E\perp\vec B\perp\hat k$, $\vec E\times\vec B\parallel\hat k$ · $\nabla^2\vec E=\mu\epsilon\,\partial_t^2\vec E$</p>
+<p>$\vec S=\vec E\times\vec H$ · $\langle S\rangle=\dfrac{E_0^2}{2\eta}=\dfrac{E_0B_0}{2\mu_0}$ (vacuum) · $P=\langle S\rangle A$ · circular pol.: $S$ constant</p>
+<p class="tip">Charging capacitor: $\vec S=-\dfrac{QIr}{2\pi^2\epsilon_0R^4}\hat r$ (inward); $P_{in}=S(R)\,2\pi Rh=\dfrac{QIh}{\epsilon_0\pi R^2}=\dfrac{d}{dt}\big(\tfrac12\epsilon_0E^2\pi R^2h\big)$</p>
+
+<div class="box"><span class="k">Recipes</span>
+<ul>
+<li><b>Ampère:</b> symmetry → loop with $B$ const/⟂ → $I_{enc}$ per region → $B$ ($H$ in materials).</li>
+<li><b>Faraday:</b> $\Phi(t)$ → $-Nd\Phi/dt$ → direction by Lenz → $I=\mathcal E/R$.</li>
+<li><b>L / M:</b> assume $I$ → $B$ → flux linkage of every turn → divide by $I$ (or $2W/I^2$).</li>
+<li><b>Wave:</b> read $k,\omega$ → $f,\lambda,v$ → $B_0=E_0/v$ → direction of $\vec B$ from $\vec E\times\vec B\parallel\hat k$ → $\langle S\rangle$.</li>
+</ul></div>
+
+<h2>Electric ↔ magnetic</h2>
+<table>
+<tr><th></th><th>Electric</th><th>Magnetic</th></tr>
+<tr><td>Source</td><td>$Q$: $\vec E=\frac{Q\hat r}{4\pi\epsilon_0r^2}$</td><td>$I\,d\vec l$: $d\vec B=\frac{\mu_0I\,d\vec l\times\hat R}{4\pi R^2}$</td></tr>
+<tr><td>Easy law</td><td>Gauss $\oint\vec D\cdot d\vec S=Q$</td><td>Ampère $\oint\vec H\cdot d\vec l=I$</td></tr>
+<tr><td>Field pair</td><td>$\vec D=\epsilon_0\vec E+\vec P=\epsilon\vec E$</td><td>$\vec B=\mu_0(\vec H+\vec M)=\mu\vec H$</td></tr>
+<tr><td>Dipole</td><td>$\vec p=Q\vec d$, $\vec\tau=\vec p\times\vec E$</td><td>$\vec\mu=I\vec A$, $\vec\tau=\vec\mu\times\vec B$</td></tr>
+<tr><td>Continuous</td><td>$E_t$, $D_n$ (no $\rho_s$)</td><td>$H_t$ (no $J_s$), $B_n$</td></tr>
+<tr><td>Refraction</td><td>$\frac{\tan\theta_1}{\tan\theta_2}=\frac{\epsilon_1}{\epsilon_2}$</td><td>$\frac{\tan\theta_1}{\tan\theta_2}=\frac{\mu_1}{\mu_2}$</td></tr>
+<tr><td>Storage</td><td>$C=\frac QV$, $\tfrac12CV^2$, $\tfrac12\epsilon E^2$</td><td>$L=\frac{N\Phi}I$, $\tfrac12LI^2$, $\frac{B^2}{2\mu}$</td></tr>
+</table>
+
+<h2>Units</h2>
+<p>Wb = T·m² · H = Wb/A = V·s/A · F = C/V · $\mu_0\epsilon_0=1/c^2$ · $\mu$ in H/m, $\epsilon$ in F/m · mmf in A·t · $\mu_B=9.27\times10^{-24}$ A·m²</p>
+
+<div class="box"><span class="k">Traps</span>
+<ul>
+<li>Arc angle in <b>radians</b>; count <b>every</b> turn of every coil.</li>
+<li>In a medium $B_0=E_0/v$, not $E_0/c$; leaving it, $f$ stays and $\lambda$ changes.</li>
+<li>Sign of $q$ in $q\vec v\times\vec B$ (electrons!); Lenz before writing $\pm$.</li>
+<li>Field ⟂ interface ⇒ $B$ same; field ∥ interface ⇒ $H$ same.</li>
+<li>Capacitor gap: no conduction current, use $\epsilon_0\,d\Phi_E/dt$.</li>
+<li>Uniform $B$: net force 0 on a loop, torque not 0.</li>
 </ul></div>
 </div>
 <script>
